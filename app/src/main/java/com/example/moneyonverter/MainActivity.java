@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void setConvertedValue(View view){
         EditText enteredValue = (EditText) findViewById(R.id.enteredValue);
-       String number = enteredValue.getText().toString();
        String number = "0";
         if(enteredValue.getText().length() == 0) {
             TextView textView = (TextView) findViewById(R.id.tv_exeption);
@@ -42,6 +41,16 @@ public class MainActivity extends AppCompatActivity {
         }
         TextView coefficient = (TextView) findViewById(R.id.coefficientView);
         if(isOnline(this)) {
+            if(enteredValue.getText().length() == 0) {
+                TextView textView = (TextView) findViewById(R.id.tv_exeption);
+                textView.setText("Введіть суму");
+            }
+            else {
+                TextView textView = (TextView) findViewById(R.id.tv_exeption);
+                textView.setText("");
+                number = enteredValue.getText().toString();
+
+            }
             coefficient.setText(Double.toString(Informer.getExchangeRate()) + " UAH = 1 USD");
             TextView convertedValue = (TextView) findViewById(R.id.resultView);
             convertedValue.setText(Double.toString(Informer.getExchangeResult(Double.valueOf(number))) + " USD");
@@ -51,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                     "No internet connection", Toast.LENGTH_SHORT);
             toast.show();
         }
-        //convertedValue.setText(buf);
     }
     public static boolean isOnline(Context context)
     {
