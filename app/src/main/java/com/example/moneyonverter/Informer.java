@@ -17,7 +17,7 @@ public class Informer {
         String linkText = link.text();
         return Double.valueOf(linkText.substring(37,42));
     }
-    public static double getExchangeResult(int number){
+    public static double getExchangeResult(double number){
         return number * getExchangeRate();
     }
 }

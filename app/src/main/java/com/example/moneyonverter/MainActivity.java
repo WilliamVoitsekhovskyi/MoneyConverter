@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         TextView coefficient = (TextView) findViewById(R.id.coefficientView);
         coefficient.setText(Double.toString(Informer.getExchangeRate()) + " UAH = 1 USD");
         TextView convertedValue = (TextView) findViewById(R.id.resultView);
-        convertedValue.setText(Double.toString(Informer.getExchangeResult(Integer.valueOf(number))) + " USD");
+        convertedValue.setText(Double.toString(Informer.getExchangeResult(Double.valueOf(number))) + " USD");
         //convertedValue.setText(buf);
     }
 }
