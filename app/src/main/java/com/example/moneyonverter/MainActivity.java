@@ -28,7 +28,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void setConvertedValue(View view){
         EditText enteredValue = (EditText) findViewById(R.id.enteredValue);
-        String number = enteredValue.getText().toString();
+       String number = enteredValue.getText().toString();
+       String number = "0";
+        if(enteredValue.getText().length() == 0) {
+            TextView textView = (TextView) findViewById(R.id.tv_exeption);
+            textView.setText("Введіть суму");
+        }
+        else {
+            TextView textView = (TextView) findViewById(R.id.tv_exeption);
+            textView.setText("");
+            number = enteredValue.getText().toString();
+
+        }
         TextView coefficient = (TextView) findViewById(R.id.coefficientView);
         if(isOnline(this)) {
             coefficient.setText(Double.toString(Informer.getExchangeRate()) + " UAH = 1 USD");
