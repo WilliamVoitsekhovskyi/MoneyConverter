@@ -29,17 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public void setConvertedValue(View view){
         EditText enteredValue = (EditText) findViewById(R.id.enteredValue);
        String number = "0";
-        if(enteredValue.getText().length() == 0) {
-            TextView textView = (TextView) findViewById(R.id.tv_exeption);
-            textView.setText("Введіть суму");
-        }
-        else {
-            TextView textView = (TextView) findViewById(R.id.tv_exeption);
-            textView.setText("");
-            number = enteredValue.getText().toString();
-
-        }
-        TextView coefficient = (TextView) findViewById(R.id.coefficientView);
+         TextView coefficient = (TextView) findViewById(R.id.coefficientView);
         if(isOnline(this)) {
             if(enteredValue.getText().length() == 0) {
                 TextView textView = (TextView) findViewById(R.id.tv_exeption);
