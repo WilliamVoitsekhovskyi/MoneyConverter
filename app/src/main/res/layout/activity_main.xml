@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="numberDecimal"
             android:hint="@string/enter_value" />
 
         <LinearLayout
@@ -70,6 +70,10 @@
             android:text="@string/convert_button"
             tools:layout_editor_absoluteX="42dp"
             tools:layout_editor_absoluteY="536dp" />
+        <TextView
+            android:id="@+id/tv_exeption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 
