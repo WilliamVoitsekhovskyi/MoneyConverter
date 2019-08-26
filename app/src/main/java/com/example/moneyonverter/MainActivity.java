@@ -28,12 +28,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void setConvertedValue(View view){
         EditText enteredValue = (EditText) findViewById(R.id.enteredValue);
-       String number = "0";
-         TextView coefficient = (TextView) findViewById(R.id.coefficientView);
+        String number = "0";
+        TextView coefficient = (TextView) findViewById(R.id.coefficientView);
         if(isOnline(this)) {
             if(enteredValue.getText().length() == 0) {
-                TextView textView = (TextView) findViewById(R.id.tv_exeption);
-                textView.setText("Введіть суму");
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "The field is empty!", Toast.LENGTH_SHORT);
+                toast.show();
             }
             else {
                 TextView textView = (TextView) findViewById(R.id.tv_exeption);
