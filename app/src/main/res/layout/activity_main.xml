@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20px"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/enteredValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/enter_value" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/coefficient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/coefficient" />
+
+            <TextView
+                android:id="@+id/coefficientView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/result" />
+
+            <TextView
+                android:id="@+id/resultView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10px"
+                android:text=""
+                tools:layout_editor_absoluteX="2dp"
+                tools:layout_editor_absoluteY="359dp" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/convertButton"
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:onClick="setConvertedValue"
+            android:text="@string/convert_button"
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="536dp" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
