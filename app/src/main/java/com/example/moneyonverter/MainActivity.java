@@ -2,11 +2,15 @@ package com.example.moneyonverter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,11 +29,29 @@ public class MainActivity extends AppCompatActivity {
     public void setConvertedValue(View view){
         EditText enteredValue = (EditText) findViewById(R.id.enteredValue);
         String number = enteredValue.getText().toString();
-
         TextView coefficient = (TextView) findViewById(R.id.coefficientView);
-        coefficient.setText(Double.toString(Informer.getExchangeRate()) + " UAH = 1 USD");
-        TextView convertedValue = (TextView) findViewById(R.id.resultView);
-        convertedValue.setText(Double.toString(Informer.getExchangeResult(Double.valueOf(number))) + " USD");
+        if(isOnline(this)) {
+            coefficient.setText(Double.toString(Informer.getExchangeRate()) + " UAH = 1 USD");
+            TextView convertedValue = (TextView) findViewById(R.id.resultView);
+            convertedValue.setText(Double.toString(Informer.getExchangeResult(Double.valueOf(number))) + " USD");
+        }
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "No internet connection", Toast.LENGTH_SHORT);
+            toast.show();
+        }
         //convertedValue.setText(buf);
     }
+    public static boolean isOnline(Context context)
+    {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting())
+        {
+            return true;
+        }
+        return false;
+    }
+
 }
