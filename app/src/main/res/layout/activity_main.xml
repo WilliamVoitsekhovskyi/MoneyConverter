@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20px"
+        android:padding="20dp"
         android:orientation="vertical">
 
         <EditText
@@ -48,14 +48,18 @@
                 android:id="@+id/result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/result" />
+                android:text="@string/result"
+                android:textColor="#000000"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/resultView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10px"
+                android:padding="10dp"
                 android:text=""
+                android:textColor="#000000"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="2dp"
                 tools:layout_editor_absoluteY="359dp" />
 
@@ -70,10 +74,18 @@
             android:text="@string/convert_button"
             tools:layout_editor_absoluteX="42dp"
             tools:layout_editor_absoluteY="536dp" />
+
+        <TextView
+            android:id="@+id/UpdateView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+
         <TextView
             android:id="@+id/tv_exeption"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 

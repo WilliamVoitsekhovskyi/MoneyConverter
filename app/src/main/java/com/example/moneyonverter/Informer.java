@@ -8,7 +8,7 @@ import org.jsoup.nodes.Element;
 import java.io.IOException;
 
 public class Informer {
-    public static double getExchangeRate(){
+    private static String getInfoLine(){
         Document doc = null;
         try {
             String url = "https://freecurrencyrates.com/en/convert-USD-UAH";
@@ -18,9 +18,14 @@ public class Informer {
         }
         Element link = doc.select("p").get(2);//2 - number of line which starting with tag <p>
         String linkText = link.text();
-        return Double.valueOf(linkText.substring(37,42));
+        return linkText;
     }
+    public static String getUpdateTime(){ return getInfoLine().substring(45, 89);}
+
+    public static double getExchangeRate(){ return Double.valueOf(getInfoLine().substring(37, 42)); }
+
     public static double getExchangeResult(double number){
         return number * getExchangeRate();
     }
+
 }
