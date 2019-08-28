@@ -27,9 +27,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setConvertedValue(View view){
-        EditText enteredValue = (EditText) findViewById(R.id.enteredValue);
+
+        EditText enteredValue = findViewById(R.id.enteredValue);
+        TextView convertedValue = findViewById(R.id.resultView);
+        TextView coefficient = findViewById(R.id.coefficientView);
+        TextView textView = findViewById(R.id.tv_exeption);
+        TextView updateInfo = findViewById(R.id.UpdateView);
         String number = "0";
-        TextView coefficient = (TextView) findViewById(R.id.coefficientView);
         if(isOnline(this)) {
             if(enteredValue.getText().length() == 0) {
                 Toast toast = Toast.makeText(getApplicationContext(),
@@ -37,14 +41,14 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
             }
             else {
-                TextView textView = (TextView) findViewById(R.id.tv_exeption);
                 textView.setText("");
                 number = enteredValue.getText().toString();
 
             }
-            coefficient.setText(Double.toString(Informer.getExchangeRate()) + " UAH = 1 USD");
-            TextView convertedValue = (TextView) findViewById(R.id.resultView);
-            convertedValue.setText(Double.toString(Informer.getExchangeResult(Double.valueOf(number))) + " USD");
+            updateInfo.setText(Informer.getUpdateTime());
+            coefficient.setText(Informer.getExchangeRate() + " UAH = 1 USD");
+            convertedValue.setText(Informer.getExchangeResult(Double.valueOf(number)) + " USD");
+
         }
         else{
             Toast toast = Toast.makeText(getApplicationContext(),
@@ -57,11 +61,7 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager cm =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnectedOrConnecting())
-        {
-            return true;
-        }
-        return false;
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
 }
