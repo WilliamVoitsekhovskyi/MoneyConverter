@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }
             updateInfo.setText(Informer.getUpdateTime());
             coefficient.setText(Informer.getExchangeRate() + " UAH = 1 USD");
-            convertedValue.setText(Informer.getExchangeResult(Double.valueOf(number)) + " USD");
+            convertedValue.setText(Informer.getExchangeResult(Double.valueOf(number)) + " UAN   ");
 
         }
         else{
