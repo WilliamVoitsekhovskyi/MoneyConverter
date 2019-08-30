@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setConvertedValue(View view){
-
         EditText enteredValue = findViewById(R.id.enteredValue);
         TextView convertedValue = findViewById(R.id.resultView);
         TextView coefficient = findViewById(R.id.coefficientView);
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
             else {
                 textView.setText("");
                 number = enteredValue.getText().toString();
-
             }
             updateInfo.setText(Informer.getUpdateTime());
             coefficient.setText(Informer.getExchangeRate() + " UAH = 1 USD");
@@ -56,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
     }
+
     public static boolean isOnline(Context context)
     {
         ConnectivityManager cm =

@@ -6,6 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public class Informer {
     private static String getInfoLine(){
@@ -24,8 +25,9 @@ public class Informer {
 
     public static double getExchangeRate(){ return Double.valueOf(getInfoLine().substring(37, 42)); }
 
-    public static double getExchangeResult(double number){
-        return number * getExchangeRate();
+    public static BigDecimal getExchangeResult(double number){
+        BigDecimal result = BigDecimal.valueOf(number * getExchangeRate());
+        return result.setScale(2,4);
     }
 
 }
