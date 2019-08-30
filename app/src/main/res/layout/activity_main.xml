@@ -12,14 +12,6 @@
         android:padding="20dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/enteredValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:hint="@string/enter_value" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="35dp"
@@ -29,14 +21,56 @@
                 android:id="@+id/coefficient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/coefficient" />
+                android:text="@string/coefficient"
+                android:textColor="#000000"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/coefficientView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="" />
+                android:layout_height="58dp"
+                android:padding="10dp"
+                android:text=""
+                android:textColor="#000000"
+                android:textSize="18sp" />
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/enteredValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:hint="@string/enter_value" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <Button
+                android:id="@+id/copyCofficientButton"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="37dp"
+                android:layout_marginEnd="36dp"
+                android:layout_toStartOf="@+id/revreseButton"
+                android:layout_toEndOf="@+id/copyButton"
+                android:text="Copy cofficient" />
+
+            <Button
+                android:id="@+id/copyButton"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="Copy result" />
+
+            <ImageButton
+                android:id="@+id/revreseButton"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="-13dp"
+                app:srcCompat="@android:drawable/ic_popup_sync" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
