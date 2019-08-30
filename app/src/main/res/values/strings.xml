@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Money Сonverter</string>
-    <string name="enter_value">Enter your amount</string>
-    <string name="convert_button">Convert</string>
+    <string name="app_name">Money Сonverter </string>
+    <string name="enter_value">Enter your amount </string>
+    <string name="convert_button">Convert </string>
     <string name="result">Result: </string>
     <string name="coefficient">Coefficient </string>
 </resources>

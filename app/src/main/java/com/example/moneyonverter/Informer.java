@@ -27,7 +27,7 @@ public class Informer {
 
     public static BigDecimal getExchangeResult(double number){
         BigDecimal result = BigDecimal.valueOf(number * getExchangeRate());
-        return result.setScale(2,4);
+        return result.setScale(2,BigDecimal.ROUND_HALF_UP);
     }
 
 }
