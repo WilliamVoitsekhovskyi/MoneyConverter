@@ -10,8 +10,10 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     EditText convertedValue;
     TextView coefficient;
     TextView updateInfo;
+    Spinner currencySelected;
+    Spinner resultCurrencySelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         enteredValue = findViewById(R.id.enteredValue);
         coefficient = findViewById(R.id.coefficientView);
         updateInfo = findViewById(R.id.UpdateView);
+        currencySelected = findViewById(R.id.changeСurrency);
+        resultCurrencySelected = findViewById(R.id.changeResultСurrency);
         String number = "0";
         String UAH_USD = getString(R.string.UAH_USD);
         String UAH = getString(R.string.UAH);
@@ -57,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                         number = enteredValue.getText().toString();
                     }
                     updateInfo.setText(Informer.getUpdateTime());
-
                     String makeCoefficientString = Informer.getExchangeRate("USD-UAH") + UAH_USD;
                     coefficient.setText(makeCoefficientString);
                     String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), "USD-UAH") + UAH;
