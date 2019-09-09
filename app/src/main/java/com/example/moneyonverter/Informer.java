@@ -1,4 +1,5 @@
 package com.example.moneyonverter;
+import android.view.View;
 import android.widget.Toast;
 
 import org.jsoup.Jsoup;
@@ -17,10 +18,12 @@ public class Informer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         Element link = doc.select("p").get(2);//2 - number of line which starting with tag <p>
         String linkText = link.text();
         return linkText;
     }
+
     public static String getUpdateTime(){ return getInfoLine().substring(45, 92);}
 
     public static double getExchangeRate(){ return Double.valueOf(getInfoLine().substring(37, 42)); }

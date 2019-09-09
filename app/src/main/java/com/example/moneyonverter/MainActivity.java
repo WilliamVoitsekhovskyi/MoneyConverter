@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -43,27 +45,31 @@ public class MainActivity extends AppCompatActivity {
         enteredValue = findViewById(R.id.enteredValue);
         coefficient = findViewById(R.id.coefficientView);
         updateInfo = findViewById(R.id.UpdateView);
-        String number = "0";
         String UAH_USD = getString(R.string.UAH_USD);
         String UAH = getString(R.string.UAH);
-
-        if(isOnline(this)) {
-            if(enteredValue.getText().length() == 0) {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "The field is empty!", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-            else {
-                number = enteredValue.getText().toString();
-            }
-            updateInfo.setText(Informer.getUpdateTime());
-
-            String makeCoefficientString = Informer.getExchangeRate() + UAH_USD;
-            coefficient.setText(makeCoefficientString);
-            String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number)) + UAH;
-            convertedValue.setText(makeResultValueString);
+        String number = "10";
+        try {
+            number = enteredValue.getText().toString();
 
         }
+        catch (NumberFormatException e){
+            Toast toast = Toast.makeText(getApplicationContext(),
+                        "The field is empty!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+            String makeCoefficientString = Informer.getExchangeRate() + UAH_USD;
+            coefficient.setText(makeCoefficientString);
+        try {
+            String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number)) + UAH;
+            convertedValue.setText(makeResultValueString);
+        }
+        catch (NumberFormatException e){
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "The field is empty!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+
 
     }
 
@@ -75,10 +81,7 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
-
-
-
-
-
-
 }
+//    Toast toast = Toast.makeText(getApplicationContext(),
+//            "NO INTERNET CONNECTION", Toast.LENGTH_SHORT);
+//            toast.show();
