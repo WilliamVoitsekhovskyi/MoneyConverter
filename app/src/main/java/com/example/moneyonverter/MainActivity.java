@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                     updateInfo.setText(Informer.getUpdateTime());
 
-                    String makeCoefficientString = Informer.getExchangeRate() + UAH_USD;
+                    String makeCoefficientString = Informer.getExchangeRate("USD-UAH") + UAH_USD;
                     coefficient.setText(makeCoefficientString);
-                    String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number)) + UAH;
+                    String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), "USD-UAH") + UAH;
                     convertedValue.setText(makeResultValueString);
 
                 }
