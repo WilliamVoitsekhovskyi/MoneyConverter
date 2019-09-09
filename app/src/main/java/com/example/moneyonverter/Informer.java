@@ -21,7 +21,7 @@ public class Informer {
         String linkText = link.text();
         return linkText;
     }
-    public static String getUpdateTime(){ return getInfoLine().substring(45, 89);}
+    public static String getUpdateTime(){ return getInfoLine().substring(45, 92);}
 
     public static double getExchangeRate(){ return Double.valueOf(getInfoLine().substring(37, 42)); }
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Konverter</string>
+    <string name="enter_value">Geben Sie den Betrag ein</string>
+    <string name="convert_button">Konvertieren</string>
+    <string name="result">Resultat:</string>
+    <string name="coefficient">Koeffizient:</string>
+    <string name="copyButton">Ergebnis kopieren</string>
+    <string name="copyCoefficientButton">Koeffizient kopieren</string>
+
+</resources>
