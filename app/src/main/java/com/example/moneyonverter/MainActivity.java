@@ -46,9 +46,7 @@ public class MainActivity extends AppCompatActivity {
         String number = "0";
         String UAH_USD = getString(R.string.UAH_USD);
         String UAH = getString(R.string.UAH);
-        switch (view.getId())
-        {
-            case R.id.convertButton:
+
                 if(isOnline(this)) {
                     if(enteredValue.getText().length() == 0) {
                         Toast toast = Toast.makeText(getApplicationContext(),
@@ -82,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
                     convertedValue.setText(Informer.getExchangeResult(Double.valueOf(number)) + " UAH");
 
                 }
-     }
     }
+
 
     public static boolean isOnline(Context context)
     {
