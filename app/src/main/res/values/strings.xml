@@ -11,7 +11,6 @@
         <item>EUR</item>
         <item>RUB</item>
         <item>UAH</item>
-
     </string-array>
     <string name="UAH_USD"> UAH = 1 USD</string>
     <string name="UAH"> UAH</string>

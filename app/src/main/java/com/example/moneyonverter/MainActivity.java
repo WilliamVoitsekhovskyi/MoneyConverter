@@ -47,23 +47,23 @@ public class MainActivity extends AppCompatActivity {
         String UAH_USD = getString(R.string.UAH_USD);
         String UAH = getString(R.string.UAH);
 
-                if(isOnline(this)) {
-                    if(enteredValue.getText().length() == 0) {
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "The field is empty!", Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-                    else {
-                        number = enteredValue.getText().toString();
-                    }
-                    updateInfo.setText(Informer.getUpdateTime());
+        if(isOnline(this)) {
+            if(enteredValue.getText().length() == 0) {
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "The field is empty!", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else {
+                number = enteredValue.getText().toString();
+            }
+            updateInfo.setText(Informer.getUpdateTime());
 
-                    String makeCoefficientString = Informer.getExchangeRate() + UAH_USD;
-                    coefficient.setText(makeCoefficientString);
-                    String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number)) + UAH;
-                    convertedValue.setText(makeResultValueString);
+            String makeCoefficientString = Informer.getExchangeRate() + UAH_USD;
+            coefficient.setText(makeCoefficientString);
+            String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number)) + UAH;
+            convertedValue.setText(makeResultValueString);
 
-                }
+        }
 
     }
 
