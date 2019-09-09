@@ -64,22 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     convertedValue.setText(makeResultValueString);
 
                 }
-                if(isOnline(this)) {
-                    if(enteredValue.getText().length() == 0) {
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "The field is empty!", Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-                    else {
-                        number = enteredValue.getText().toString();
-                    }
-                    updateInfo.setText(Informer.getUpdateTime());
-                    String currencyName = Informer.getExchangeRate() + UAH_USD;
-                    coefficient.setText(currencyName);
-
-                    convertedValue.setText(Informer.getExchangeResult(Double.valueOf(number)) + " UAH");
-
-                }
+                
     }
 
 
