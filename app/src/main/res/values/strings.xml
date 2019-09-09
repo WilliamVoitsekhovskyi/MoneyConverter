@@ -13,6 +13,6 @@
         <item>UAH</item>
 
     </string-array>
-    <string name="UAH_USD">" UAH = 1 USD"</string>
-    <string name="UAH">UAH</string>
+    <string name="UAH_USD"> UAH = 1 USD</string>
+    <string name="UAH"> UAH</string>
 </resources>
