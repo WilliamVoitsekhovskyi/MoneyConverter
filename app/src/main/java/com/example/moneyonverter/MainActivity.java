@@ -45,10 +45,11 @@ public class MainActivity extends AppCompatActivity {
         updateInfo = findViewById(R.id.UpdateView);
         String number = "0";
         String UAH_USD = getString(R.string.UAH_USD);
+        String UAH = getString(R.string.UAH);
         switch (view.getId())
         {
             case R.id.convertButton:
-      //          if(isOnline(this)) {
+                if(isOnline(this)) {
                     if(enteredValue.getText().length() == 0) {
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "The field is empty!", Toast.LENGTH_SHORT);
@@ -59,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                     updateInfo.setText(Informer.getUpdateTime());
 
-                    String a = Informer.getExchangeRate() + UAH_USD;
-                    coefficient.setText(a);
-                    convertedValue.setText(Informer.getExchangeResult(Double.valueOf(number)) + " UAH");
+                    String makeCoefficientString = Informer.getExchangeRate() + UAH_USD;
+                    coefficient.setText(makeCoefficientString);
+                    String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number)) + UAH;
+                    convertedValue.setText(makeResultValueString);
 
                 }
                 if(isOnline(this)) {
@@ -74,11 +76,12 @@ public class MainActivity extends AppCompatActivity {
                         number = enteredValue.getText().toString();
                     }
                     updateInfo.setText(Informer.getUpdateTime());
-                    String currensyName = Informer.getExchangeRate() + UAH_USD;
-                    coefficient.setText(currensyName);
+                    String currencyName = Informer.getExchangeRate() + UAH_USD;
+                    coefficient.setText(currencyName);
+
                     convertedValue.setText(Informer.getExchangeResult(Double.valueOf(number)) + " UAH");
 
-                //}
+                }
      }
     }
 
