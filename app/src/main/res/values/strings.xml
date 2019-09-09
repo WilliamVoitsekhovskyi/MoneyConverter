@@ -1,7 +1,17 @@
 <resources>
-    <string name="app_name">Money Сonverter </string>
-    <string name="enter_value">Enter your amount </string>
-    <string name="convert_button">Convert </string>
-    <string name="result">Result: </string>
-    <string name="coefficient">Coefficient </string>
+    <string name="app_name">Money Сonverter</string>
+    <string name="enter_value">Enter your amount</string>
+    <string name="convert_button">Convert</string>
+    <string name="result">Result:</string>
+    <string name="coefficient">Coefficient</string>
+    <string name="copyButton">Copy result</string>
+    <string name="copyCoefficientButton">Copy coefficient</string>
+    <string-array name="changeСurrency">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>RUB</item>
+        <item>UAH</item>
+
+    </string-array>
+    <string name="UAH_USD">" UAH = 1 USD"</string>
 </resources>

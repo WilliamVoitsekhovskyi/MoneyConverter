@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Конвертор </string>
-    <string name="enter_value">Вкажіть суму </string>
-    <string name="convert_button">Конвертувати </string>
-    <string name="result">Результат: </string>
-    <string name="coefficient">Коефіціент </string>
+    <string name="app_name">Конвертор</string>
+    <string name="enter_value">Вкажіть суму</string>
+    <string name="convert_button">Конвертувати</string>
+    <string name="result">Результат:</string>
+    <string name="coefficient">Коефіціент</string>
+    <string name="copyButton">Копіювати результа</string>
+    <string name="copyCoefficientButton">Копіювати коефіцієнт</string>
+
 </resources>
