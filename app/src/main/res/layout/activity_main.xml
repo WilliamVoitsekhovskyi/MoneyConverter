@@ -55,7 +55,8 @@
                 android:id="@+id/changeСurrency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/changeСurrency" />
+                android:entries="@array/changeСurrency"
+                android:layout_gravity="center"/>
 
         </LinearLayout>
 
@@ -102,10 +103,9 @@
 
             <EditText
                 android:id="@+id/resultView"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text=""
                 android:textColor="#000000"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="1dp"
@@ -113,9 +113,10 @@
 
             <Spinner
                 android:id="@+id/changeResultСurrency"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:gravity="right"
                 android:layout_height="wrap_content"
-                 android:entries="@array/changeСurrency" />
+                android:entries="@array/changeСurrency" />
 
         </LinearLayout>
 

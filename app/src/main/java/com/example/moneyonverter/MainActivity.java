@@ -10,10 +10,8 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
     EditText convertedValue;
     TextView coefficient;
     TextView updateInfo;
-    Spinner currencySelected;
-    Spinner resultCurrencySelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,25 +45,29 @@ public class MainActivity extends AppCompatActivity {
         enteredValue = findViewById(R.id.enteredValue);
         coefficient = findViewById(R.id.coefficientView);
         updateInfo = findViewById(R.id.UpdateView);
-        currencySelected = findViewById(R.id.changeСurrency);
-        resultCurrencySelected = findViewById(R.id.changeResultСurrency);
-        String number = "0";
         String UAH_USD = getString(R.string.UAH_USD);
         String UAH = getString(R.string.UAH);
+        String number = "10";
         try {
             number = enteredValue.getText().toString();
 
         }
         catch (NumberFormatException e){
             Toast toast = Toast.makeText(getApplicationContext(),
-                    "The field is empty!", Toast.LENGTH_SHORT);
+                        "The field is empty!", Toast.LENGTH_SHORT);
             toast.show();
         }
-        updateInfo.setText(Informer.getUpdateTime());
-        String makeCoefficientString = Informer.getExchangeRate() + UAH_USD;
-        coefficient.setText(makeCoefficientString);
+//        try {
+            String makeCoefficientString = Informer.getExchangeRate("USD") + UAH_USD;            // throw string that shows changed currency
+            coefficient.setText(makeCoefficientString);
+//        }
+//        catch (IllegalArgumentException e){
+//            Toast toast = Toast.makeText(getApplicationContext(),
+//                    "WTF!", Toast.LENGTH_SHORT);
+//            toast.show();
+//        }
         try {
-            String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number)) + UAH;
+            String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), "UAH") + UAH;
             convertedValue.setText(makeResultValueString);
         }
         catch (NumberFormatException e){
@@ -77,22 +77,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
     }
 
 
-//    public static boolean isOnline(Context context)
-//    {
-//        ConnectivityManager cm =
-//                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-//        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-//        return netInfo != null && netInfo.isConnectedOrConnecting();
-//    }
-
-
-
-
-
-
+    public static boolean isOnline(Context context)
+    {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
 }
 //    Toast toast = Toast.makeText(getApplicationContext(),
 //            "NO INTERNET CONNECTION", Toast.LENGTH_SHORT);
