@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     coefficient.setText(makeCoefficientString);
                     String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), "USD-UAH") + UAH;
                     convertedValue.setText(makeResultValueString);
-                }else{
+                }
+                else {
                     Toast toastNoInternet = Toast.makeText(getApplicationContext(),
                             "No Internet connection", Toast.LENGTH_SHORT);
                     toastNoInternet.show();
