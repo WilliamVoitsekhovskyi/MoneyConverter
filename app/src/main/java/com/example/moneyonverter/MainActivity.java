@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isOnline(this)) {
                     if(enteredValue.getText().length() == 0) {
-                        Toast toast = Toast.makeText(getApplicationContext(),
+                        Toast toastEmptyField = Toast.makeText(getApplicationContext(),
                                 "The field is empty!", Toast.LENGTH_SHORT);
-                        toast.show();
+                        toastEmptyField.show();
                     }
                     else {
                         number = enteredValue.getText().toString();
@@ -66,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
                     coefficient.setText(makeCoefficientString);
                     String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), "USD-UAH") + UAH;
                     convertedValue.setText(makeResultValueString);
+                }else{
+                    Toast toastNoInternet = Toast.makeText(getApplicationContext(),
+                            "No Internet connection", Toast.LENGTH_SHORT);
+                    toastNoInternet.show();
                 }
     }
 
