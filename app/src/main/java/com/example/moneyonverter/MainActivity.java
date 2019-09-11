@@ -18,12 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-
+    
     EditText enteredValue;
     EditText convertedValue;
+
     TextView coefficient;
     TextView updateInfo;
+
     Spinner currencySelected;
     Spinner resultCurrencySelected;
 
@@ -39,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
         }
         convertedValue = findViewById(R.id.resultView);
         convertedValue.setFocusable(false);                                       // to make EditText field(resultView) uneditable
-
-
     }
 
     public void setConvertedValue(View view){
@@ -67,11 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     coefficient.setText(makeCoefficientString);
                     String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), "USD-UAH") + UAH;
                     convertedValue.setText(makeResultValueString);
-
                 }
-
     }
-
 
     public static boolean isOnline(Context context)
     {

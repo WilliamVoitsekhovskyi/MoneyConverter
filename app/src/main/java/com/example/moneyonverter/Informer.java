@@ -71,7 +71,6 @@ public class Informer {
                 System.out.println("ERROR");
                 break;
         }
-
         Element link = getDocument().select(attribute).first();//2 - number of line which starting with tag <p>
         String linkText = link.text();
         return Double.parseDouble(linkText);
