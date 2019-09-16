@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         UAH_USD = getString(R.string.UAH_USD);
         enteredValue = findViewById(R.id.enteredValue);
         coefficient = findViewById(R.id.coefficientView);
+        coefficient.setFocusable(false);
         updateInfo = findViewById(R.id.UpdateView);
         currencySelected = findViewById(R.id.changeСurrency);
         resultCurrencySelected = findViewById(R.id.changeResultСurrency);
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                         try {
-                        makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), "USD-UAH") + UAH;
+                        makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), "USD-UAH") + " " + UAH;
                     }
                     catch (NumberFormatException e){
                         runOnUiThread(new Runnable() {
@@ -98,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                     }
-
                     convertedValue.post(new Runnable() {
                         @Override
                         public void run() {
@@ -108,18 +108,4 @@ public class MainActivity extends AppCompatActivity {
                 }
             }).start();
     }
-
-    public static boolean isOnline(Context context)
-    {
-        ConnectivityManager cm =
-                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
-    }
-
-
-
-
-
-
 }
