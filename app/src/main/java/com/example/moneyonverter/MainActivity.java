@@ -1,9 +1,6 @@
 package com.example.moneyonverter;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -23,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
     Spinner currencySelected;
     Spinner resultCurrencySelected;
-    String number = "";
-    String updateTime = "0";
-    String  UAH_USD = "";
-    String UAH = "";
-    String makeCoefficientString = "";
-    String makeResultValueString = "";
+    String number = "";                                         //
+    String updateTime = "0";                                    //
+    String  UAH_USD = "";                                       // should be global
+    String UAH = "";                                            //
+    String makeCoefficientString = "";                          //
+    String makeResultValueString = "";                          //
 
 
     @Override
@@ -109,17 +106,11 @@ public class MainActivity extends AppCompatActivity {
             }).start();
     }
 
-    public static boolean isOnline(Context context)
-    {
-        ConnectivityManager cm =
-                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
-    }
-
-
-
-
-
-
+//    public static boolean isOnline(Context context)
+//    {
+//        ConnectivityManager cm =
+//                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+//        return netInfo != null && netInfo.isConnectedOrConnecting();
+//    }
 }

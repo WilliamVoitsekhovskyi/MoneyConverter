@@ -1,13 +1,8 @@
 package com.example.moneyonverter;
 
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 
@@ -31,7 +26,7 @@ public class Informer {
         return link.text();
     }
 
-    public /*synchronized*/ static double getExchangeRate(String currencyChoice) throws NullPointerException {                          // need be synchronized
+    public static double getExchangeRate(String currencyChoice) throws NullPointerException {                          // need be synchronized
         String attribute = "";
         System.out.println(currencyChoice);
         switch (currencyChoice) {
@@ -81,7 +76,7 @@ public class Informer {
             return Double.parseDouble(linkText);
     }
 
-    public /*synchronized*/ static BigDecimal getExchangeResult(double number, String currencyChoice){      // need be synchronized
+    public static BigDecimal getExchangeResult(double number, String currencyChoice){      // need be synchronized
         BigDecimal result = BigDecimal.valueOf(number * getExchangeRate(currencyChoice));
         return result.setScale(2,BigDecimal.ROUND_HALF_UP);
     }
