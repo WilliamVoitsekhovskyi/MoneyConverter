@@ -23,6 +23,13 @@ public class MainActivity extends AppCompatActivity {
 
     Spinner currencySelected;
     Spinner resultCurrencySelected;
+    String number = "";
+    String updateTime = "0";
+    String  UAH_USD = "";
+    String UAH = "";
+    String makeCoefficientString = "";
+    String makeResultValueString = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,41 +46,67 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setConvertedValue(View view){
+        UAH = getString(R.string.UAH);
+        UAH_USD = getString(R.string.UAH_USD);
         enteredValue = findViewById(R.id.enteredValue);
         coefficient = findViewById(R.id.coefficientView);
         updateInfo = findViewById(R.id.UpdateView);
         currencySelected = findViewById(R.id.changeСurrency);
         resultCurrencySelected = findViewById(R.id.changeResultСurrency);
-        String number = "0";
-        String UAH_USD = getString(R.string.UAH_USD);
-        String UAH = getString(R.string.UAH);
-        if(isOnline(this)) {
             try {
                 number = enteredValue.getText().toString();
             }
             catch (NumberFormatException e){
-                Toast toastEmptyField = Toast.makeText(getApplicationContext(),
-                        "The field is empty!", Toast.LENGTH_SHORT);
-                toastEmptyField.show();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(MainActivity.this, "The field is empty!", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
-            updateInfo.setText(Informer.getUpdateTime());
-            String makeCoefficientString = Informer.getExchangeRate("USD-UAH") + UAH_USD;
-            coefficient.setText(makeCoefficientString);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        makeCoefficientString = Informer.getExchangeRate("USD-UAH") + UAH_USD;
+                        coefficient.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                coefficient.setText(makeCoefficientString);
+                            }
+                        });
+                        updateTime = Informer.getUpdateTime();
+                        updateInfo.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateInfo.setText(updateTime);
+                            }
+                        });
+                        try {
+                        makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), "USD-UAH") + UAH;
+                    }
+                    catch (NumberFormatException e){
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(MainActivity.this, "The field is empty!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }                    }
+                    catch (NullPointerException e){
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(MainActivity.this, "No Internet connection", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
 
-            try {
-                String makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), "USD-UAH") + UAH;
-                convertedValue.setText(makeResultValueString);        }
-            catch (NumberFormatException e){
-                Toast toastEmptyField = Toast.makeText(getApplicationContext(),
-                        "The field is empty!", Toast.LENGTH_SHORT);
-                toastEmptyField.show();
-            }
-        }
-        else {
-            Toast toastNoInternet = Toast.makeText(getApplicationContext(),
-                    "No Internet connection", Toast.LENGTH_SHORT);
-            toastNoInternet.show();
-        }
+                    convertedValue.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            convertedValue.setText(makeResultValueString);
+                        }
+                    });
+                }
+            }).start();
     }
 
     public static boolean isOnline(Context context)

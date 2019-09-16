@@ -1,11 +1,14 @@
 package com.example.moneyonverter;
 
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 
 public class Informer {
@@ -23,12 +26,12 @@ public class Informer {
         return doc;
     }
 
-    public static String getUpdateTime() {
+    public static String getUpdateTime() throws NullPointerException{
         Element link = getDocument().select("div #toptencurrencies").select("span").get(3);//3 - number of line which starting with tag <span>
         return link.text();
     }
 
-    public static double getExchangeRate(String currencyChoice) {
+    public /*synchronized*/ static double getExchangeRate(String currencyChoice) throws NullPointerException {                          // need be synchronized
         String attribute = "";
         System.out.println(currencyChoice);
         switch (currencyChoice) {
@@ -72,12 +75,13 @@ public class Informer {
                 System.out.println("ERROR");
                 break;
         }
-        Element link = getDocument().select(attribute).first();//2 - number of line which starting with tag <p>
-        String linkText = link.text();
-        return Double.parseDouble(linkText);
+
+            Element link = getDocument().select(attribute).first();//2 - number of line which starting with tag <p>
+            String linkText = link.text();
+            return Double.parseDouble(linkText);
     }
 
-    public static BigDecimal getExchangeResult(double number, String currencyChoice){
+    public /*synchronized*/ static BigDecimal getExchangeResult(double number, String currencyChoice){      // need be synchronized
         BigDecimal result = BigDecimal.valueOf(number * getExchangeRate(currencyChoice));
         return result.setScale(2,BigDecimal.ROUND_HALF_UP);
     }
