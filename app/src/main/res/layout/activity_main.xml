@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -27,36 +27,41 @@
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/coefficientView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10px"
+                android:hint="Here will be coefficient"
+                android:padding="15dp"
+                android:selectAllOnFocus="false"
+                android:singleLine="false"
                 android:text=""
                 android:textColor="#000000"
-                android:textSize="18sp" />
-            android:text="" />
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="359dp" />
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/enteredValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/enter_value"
-                android:inputType="numberDecimal" />
+            android:orientation="vertical">
 
             <Spinner
                 android:id="@+id/changeСurrency"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/changeСurrency"
-                android:layout_gravity="center"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:entries="@array/changeСurrency" />
+
+            <EditText
+                android:id="@+id/enteredValue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="@string/enter_value"
+                android:inputType="numberDecimal" />
 
         </LinearLayout>
 
@@ -91,7 +96,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/changeResultСurrency"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/changeСurrency"
+                android:gravity="right" />
 
             <TextView
                 android:id="@+id/result"
@@ -101,25 +113,22 @@
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/resultView"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="359dp" />
-
-            <Spinner
-                android:id="@+id/changeResultСurrency"
-                android:layout_width="wrap_content"
-                android:gravity="right"
-                android:layout_height="wrap_content"
-                android:entries="@array/changeСurrency" />
-
         </LinearLayout>
 
+
+        <EditText
+            android:id="@+id/resultView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your result will be here"
+            android:inputType="number"
+            android:padding="15dp"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="359dp" />
 
         <Button
             android:id="@+id/convertButton"
@@ -134,7 +143,8 @@
             android:id="@+id/UpdateView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:text=""
+            android:textSize="14sp" />
 
     </LinearLayout>
 
