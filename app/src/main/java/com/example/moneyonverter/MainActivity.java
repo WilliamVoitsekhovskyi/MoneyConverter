@@ -1,9 +1,6 @@
 package com.example.moneyonverter;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -23,12 +20,14 @@ public class MainActivity extends AppCompatActivity {
 
     Spinner currencySelected;
     Spinner resultCurrencySelected;
-    String number = "";
-    String updateTime = "0";
-    String  UAH_USD = "";
-    String UAH = "";
-    String makeCoefficientString = "";
-    String makeResultValueString = "";
+    String number = "";                                         //
+    String updateTime = "0";                                    //
+    String  UAH_USD = "";                                       // should be global
+    String UAH = "";                                            //
+    String fieldEmpty = "";                                     //
+    String noInternet = "";                                     //
+    String makeCoefficientString = "";                          //
+    String makeResultValueString = "";                          //
 
 
     @Override
@@ -48,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     public void setConvertedValue(View view){
         UAH = getString(R.string.UAH);
         UAH_USD = getString(R.string.UAH_USD);
+        fieldEmpty = getString(R.string.fieldEmpty);
+        noInternet = getString(R.string.noInternet);
         enteredValue = findViewById(R.id.enteredValue);
         coefficient = findViewById(R.id.coefficientView);
         coefficient.setFocusable(false);
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             catch (NumberFormatException e){
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        Toast.makeText(MainActivity.this, "The field is empty!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -88,14 +89,14 @@ public class MainActivity extends AppCompatActivity {
                     catch (NumberFormatException e){
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                Toast.makeText(MainActivity.this, "The field is empty!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
                             }
                         });
                     }                    }
                     catch (NullPointerException e){
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                Toast.makeText(MainActivity.this, "No Internet connection", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, noInternet, Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
