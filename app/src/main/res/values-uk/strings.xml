@@ -7,5 +7,6 @@
     <string name="coefficient">Коефіціент</string>
     <string name="copyButton">Копіювати результа</string>
     <string name="copyCoefficientButton">Копіювати коефіцієнт</string>
-
+    <string name="noInternet">Немає з`єднання з інтернетом!</string>
+    <string name="fieldEmpty">Пусте поле!</string>
 </resources>

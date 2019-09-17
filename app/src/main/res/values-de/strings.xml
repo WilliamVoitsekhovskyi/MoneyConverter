@@ -7,5 +7,7 @@
     <string name="coefficient">Koeffizient:</string>
     <string name="copyButton">Ergebnis kopieren</string>
     <string name="copyCoefficientButton">Koeffizient kopieren</string>
+    <string name="noInternet">Keine Internetverbindung!</string>
+    <string name="fieldEmpty">Das Feld ist leer!</string>
 
 </resources>
