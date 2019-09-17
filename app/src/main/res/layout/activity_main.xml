@@ -77,6 +77,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#00FFFFFF"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:tint="#000000"
                 app:srcCompat="@android:drawable/ic_popup_sync" />
 
