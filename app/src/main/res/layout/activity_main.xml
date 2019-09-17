@@ -48,6 +48,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/enteredValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/enter_value"
+            android:inputType="numberDecimal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+
             <Spinner
                 android:id="@+id/changeСurrency"
                 android:layout_width="match_parent"
@@ -55,48 +72,13 @@
                 android:layout_gravity="center"
                 android:entries="@array/changeСurrency" />
 
-            <EditText
-                android:id="@+id/enteredValue"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:hint="@string/enter_value"
-                android:inputType="numberDecimal" />
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp">
-
-            <Button
-                android:id="@+id/copyCoefficientButton"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="22dp"
-                android:layout_marginEnd="22dp"
-                android:layout_toStartOf="@+id/reverseButton"
-                android:layout_toEndOf="@+id/copyButton"
-                android:text="@string/copyCoefficientButton" />
-
-            <Button
-                android:id="@+id/copyButton"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:text="@string/copyButton" />
-
             <ImageButton
                 android:id="@+id/reverseButton"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:tint="#000000"
                 app:srcCompat="@android:drawable/ic_popup_sync" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
             <Spinner
                 android:id="@+id/changeResultСurrency"
@@ -104,17 +86,24 @@
                 android:layout_height="match_parent"
                 android:entries="@array/changeСurrency"
                 android:gravity="right" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:text="@string/result"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
         </LinearLayout>
-
 
         <EditText
             android:id="@+id/resultView"
@@ -138,6 +127,25 @@
             android:text="@string/convert_button"
             tools:layout_editor_absoluteX="42dp"
             tools:layout_editor_absoluteY="536dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/copyCoefficientButton"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:text="@string/copyCoefficientButton" />
+
+            <Button
+                android:id="@+id/copyButton"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:text="@string/copyButton" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/UpdateView"
