@@ -1,10 +1,15 @@
 package com.example.moneyonverter;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
     String fieldEmpty = "";                                     //
     String noInternet = "";                                     //
     String makeCoefficientString = "";                          //
-    String makeResultValueString = "";                          //
+    String makeResultValueString = "";
+
+    ImageButton reverseButton;
 
 
     @Override
@@ -53,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
         coefficient = findViewById(R.id.coefficientView);
         coefficient.setFocusable(false);
         updateInfo = findViewById(R.id.UpdateView);
+        reverseButton = findViewById(R.id.reverseButton);
         currencySelected = findViewById(R.id.changeСurrency);
         resultCurrencySelected = findViewById(R.id.changeResultСurrency);
+
             try {
                 number = enteredValue.getText().toString();
             }
@@ -108,5 +117,17 @@ public class MainActivity extends AppCompatActivity {
                     });
                 }
             }).start();
+    }
+    public void copyResult(View view){
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("label", convertedValue.getText());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(MainActivity.this,  "Your result has been copied", Toast.LENGTH_SHORT).show();
+    }
+    public void copyCoefficient(View view){
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("label", coefficient.getText());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(MainActivity.this,  "Current coefficient has been copied", Toast.LENGTH_SHORT).show();
     }
 }

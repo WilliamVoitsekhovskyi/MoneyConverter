@@ -139,12 +139,14 @@
                 android:id="@+id/copyCoefficientButton"
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
+                android:onClick="copyCoefficient"
                 android:text="@string/copyCoefficientButton" />
 
             <Button
                 android:id="@+id/copyButton"
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
+                android:onClick="copyResult"
                 android:text="@string/copyButton" />
 
         </LinearLayout>
