@@ -7,6 +7,7 @@ import android.content.ClipboardManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
-    
+
     EditText enteredValue;
     EditText convertedValue;
 
@@ -25,17 +26,16 @@ public class MainActivity extends AppCompatActivity {
 
     Spinner currencySelected;
     Spinner resultCurrencySelected;
-    String number = "";                                         //
+    String number;                                         //
     String updateTime = "0";                                    //
-    String  UAH_USD = "";                                       // should be global
-    String UAH = "";                                            //
-    String fieldEmpty = "";                                     //
+    String  UAH_USD;                                       // should be global
+    String UAH;                                            //
+    String fieldEmpty = "Field is empty";//should be from string values                                     //
     String noInternet = "";                                     //
     String makeCoefficientString = "";                          //
     String makeResultValueString = "";
 
     ImageButton reverseButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     public void setConvertedValue(View view){
         UAH = getString(R.string.UAH);
         UAH_USD = getString(R.string.UAH_USD);
-        fieldEmpty = getString(R.string.fieldEmpty);
         noInternet = getString(R.string.noInternet);
         enteredValue = findViewById(R.id.enteredValue);
         coefficient = findViewById(R.id.coefficientView);
@@ -118,16 +117,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             }).start();
     }
-    public void copyResult(View view){
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("label", convertedValue.getText());
-        clipboard.setPrimaryClip(clip);
-        Toast.makeText(MainActivity.this,  "Your result has been copied", Toast.LENGTH_SHORT).show();
-    }
+    public void copyResult(View view) {
+        try {
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("label", convertedValue.getText());
+            clipboard.setPrimaryClip(clip);
+        }
+        catch (NullPointerException e) {
+            Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
+                }
+
+            }
     public void copyCoefficient(View view){
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("label", coefficient.getText());
-        clipboard.setPrimaryClip(clip);
-        Toast.makeText(MainActivity.this,  "Current coefficient has been copied", Toast.LENGTH_SHORT).show();
+        try{
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("label", coefficient.getText());
+            clipboard.setPrimaryClip(clip);
+        }
+        catch (NullPointerException e) {
+            Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
+    }
+
+    }
+    public void reverseClick(View view){
+        Toast.makeText(MainActivity.this,  "test", Toast.LENGTH_SHORT).show();//
+
     }
 }
