@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     String fieldEmpty = "Field is empty";//should be from string values                                     //
     String noInternet = "";                                     //
     String makeCoefficientString = "";                          //
-    String makeResultValueString = "";
+    String makeResultValueString;
 
     ImageButton reverseButton;
 
@@ -47,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        convertedValue = findViewById(R.id.resultView);
-        convertedValue.setFocusable(false);                                       // to make EditText field(resultView) uneditable
+                        // to make EditText field(resultView) uneditable
     }
 
     public void setConvertedValue(View view){
@@ -56,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         UAH_USD = getString(R.string.UAH_USD);
         noInternet = getString(R.string.noInternet);
         enteredValue = findViewById(R.id.enteredValue);
+        convertedValue = findViewById(R.id.resultView);
+        convertedValue.setFocusable(false);
         coefficient = findViewById(R.id.coefficientView);
         coefficient.setFocusable(false);
         updateInfo = findViewById(R.id.UpdateView);
@@ -118,16 +119,18 @@ public class MainActivity extends AppCompatActivity {
             }).start();
     }
     public void copyResult(View view) {
-        try {
-            ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("label", convertedValue.getText());
-            clipboard.setPrimaryClip(clip);
-        }
-        catch (NullPointerException e) {
-            Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
+        runOnUiThread(new Runnable() {
+            public void run() {
+                try {
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("label", convertedValue.getText());
+                    clipboard.setPrimaryClip(clip);
+                } catch (NullPointerException e) {
+                    Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
                 }
-
             }
+        });
+    }
     public void copyCoefficient(View view){
         try{
             ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
