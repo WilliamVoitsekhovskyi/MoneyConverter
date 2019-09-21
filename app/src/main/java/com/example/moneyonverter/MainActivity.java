@@ -18,24 +18,25 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText enteredValue;
-    EditText convertedValue;
+    EditText ED_enteredValue;
+    EditText ED_convertedValue;
 
-    TextView coefficient;
-    TextView updateInfo;
+    TextView TV_coefficient;
+    TextView TV_updateInfo;
 
-    Spinner currencySelected;
-    Spinner resultCurrencySelected;
+    Spinner SP_currencySelected;
+    Spinner SP_resultCurrencySelected;
+
     String number;                                         //
-    String updateTime = "0";                                    //
-    String  UAH_USD;                                       // should be global
+    String updateTime;                                    //
+    String UAH_USD;                                       // should be global
     String UAH;                                            //
-    String fieldEmpty = "Field is empty";//should be from string values                                     //
-    String noInternet = "";                                     //
-    String makeCoefficientString = "";                          //
+    String fieldEmpty = "Field is empty";                  //should be from string values
+    String noInternet;                                     //
+    String makeCoefficientString;                          //
     String makeResultValueString;
 
-    ImageButton reverseButton;
+    ImageButton reverseImageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,22 +51,26 @@ public class MainActivity extends AppCompatActivity {
                         // to make EditText field(resultView) uneditable
     }
 
-    public void setConvertedValue(View view){
+    public void onClick_setConvertedValue(View view){
         UAH = getString(R.string.UAH);
         UAH_USD = getString(R.string.UAH_USD);
         noInternet = getString(R.string.noInternet);
-        enteredValue = findViewById(R.id.enteredValue);
-        convertedValue = findViewById(R.id.resultView);
-        convertedValue.setFocusable(false);
-        coefficient = findViewById(R.id.coefficientView);
-        coefficient.setFocusable(false);
-        updateInfo = findViewById(R.id.UpdateView);
-        reverseButton = findViewById(R.id.reverseButton);
-        currencySelected = findViewById(R.id.changeСurrency);
-        resultCurrencySelected = findViewById(R.id.changeResultСurrency);
+
+        ED_enteredValue = findViewById(R.id.enteredValue);
+        ED_convertedValue = findViewById(R.id.resultView);
+        ED_convertedValue.setFocusable(false);
+
+        TV_coefficient = findViewById(R.id.coefficientView);
+        TV_coefficient.setFocusable(false);
+        TV_updateInfo = findViewById(R.id.UpdateView);
+
+        reverseImageButton = findViewById(R.id.reverseButton);
+
+        SP_currencySelected = findViewById(R.id.changeСurrency);
+        SP_resultCurrencySelected = findViewById(R.id.changeResultСurrency);
 
             try {
-                number = enteredValue.getText().toString();
+                number = ED_enteredValue.getText().toString();
             }
             catch (NumberFormatException e){
                 runOnUiThread(new Runnable() {
@@ -79,17 +84,17 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         makeCoefficientString = Informer.getExchangeRate("USD-UAH") + UAH_USD;
-                        coefficient.post(new Runnable() {
+                        TV_coefficient.post(new Runnable() {
                             @Override
                             public void run() {
-                                coefficient.setText(makeCoefficientString);
+                                TV_coefficient.setText(makeCoefficientString);
                             }
                         });
                         updateTime = Informer.getUpdateTime();
-                        updateInfo.post(new Runnable() {
+                        TV_updateInfo.post(new Runnable() {
                             @Override
                             public void run() {
-                                updateInfo.setText(updateTime);
+                                TV_updateInfo.setText(updateTime);
                             }
                         });
                         try {
@@ -109,21 +114,21 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                     }
-                    convertedValue.post(new Runnable() {
+                    ED_convertedValue.post(new Runnable() {
                         @Override
                         public void run() {
-                            convertedValue.setText(makeResultValueString);
+                            ED_convertedValue.setText(makeResultValueString);
                         }
                     });
                 }
             }).start();
     }
-    public void copyResult(View view) {
+    public void onClick_copyResult(View view) {
         runOnUiThread(new Runnable() {
             public void run() {
                 try {
                     ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                    ClipData clip = ClipData.newPlainText("label", convertedValue.getText());
+                    ClipData clip = ClipData.newPlainText("label", ED_convertedValue.getText());
                     clipboard.setPrimaryClip(clip);
                 } catch (NullPointerException e) {
                     Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
@@ -131,10 +136,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void copyCoefficient(View view){
+    public void onClick_copyCoefficient(View view){
         try{
             ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("label", coefficient.getText());
+            ClipData clip = ClipData.newPlainText("label", (TV_coefficient.getText()));
             clipboard.setPrimaryClip(clip);
         }
         catch (NullPointerException e) {
@@ -142,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     }
-    public void reverseClick(View view){
+    public void onClick_doReverse(View view){
         Toast.makeText(MainActivity.this,  "test", Toast.LENGTH_SHORT).show();//
 
     }
