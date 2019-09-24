@@ -38,7 +38,10 @@
                 android:textColor="#000000"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="359dp" />
+                tools:layout_editor_absoluteY="359dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:cursorVisible="false"/>
 
         </LinearLayout>
 

@@ -7,6 +7,7 @@ import android.content.ClipboardManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     String noInternet;                                     //
     String makeCoefficientString;                          //
     String makeResultValueString;
+    String comparedChoice = "";
 
     ImageButton reverseImageButton;
 
@@ -48,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
                     StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-                        // to make EditText field(resultView) uneditable
+
+//        SP_currencySelected.setSelection(1);              //used to set choice by default
+//        SP_resultCurrencySelected.setSelection(4);        //but it doesn't work in onCreate. why??
     }
 
     public void onClick_setConvertedValue(View view){
@@ -69,36 +73,40 @@ public class MainActivity extends AppCompatActivity {
         SP_currencySelected = findViewById(R.id.changeСurrency);
         SP_resultCurrencySelected = findViewById(R.id.changeResultСurrency);
 
-            try {
-                number = ED_enteredValue.getText().toString();
-            }
-            catch (NumberFormatException e){
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-            new Thread(new Runnable() {
-                @Override
+        String currencyChoice = String.valueOf(SP_currencySelected.getSelectedItem());
+        String resultCurrencyChoice = String.valueOf(SP_resultCurrencySelected.getSelectedItem());
+        comparedChoice = currencyChoice + "-" + resultCurrencyChoice;
+
+        try {
+            number = ED_enteredValue.getText().toString();
+        }
+        catch (NumberFormatException e){
+            runOnUiThread(new Runnable() {
                 public void run() {
+                    Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    makeCoefficientString = Informer.getExchangeRate(comparedChoice) + UAH_USD;
+                    TV_coefficient.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            TV_coefficient.setText(makeCoefficientString);
+                        }
+                    });
+                    updateTime = Informer.getUpdateTime();
+                    TV_updateInfo.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            TV_updateInfo.setText(updateTime);
+                        }
+                    });
                     try {
-                        makeCoefficientString = Informer.getExchangeRate("USD-UAH") + UAH_USD;
-                        TV_coefficient.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                TV_coefficient.setText(makeCoefficientString);
-                            }
-                        });
-                        updateTime = Informer.getUpdateTime();
-                        TV_updateInfo.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                TV_updateInfo.setText(updateTime);
-                            }
-                        });
-                        try {
-                        makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), "USD-UAH") + " " + UAH;
+                        makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), comparedChoice) + " " + UAH;
                     }
                     catch (NumberFormatException e){
                         runOnUiThread(new Runnable() {
@@ -107,21 +115,21 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                     }                    }
-                    catch (NullPointerException e){
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                Toast.makeText(MainActivity.this, noInternet, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                    ED_convertedValue.post(new Runnable() {
-                        @Override
+                catch (NullPointerException e){
+                    runOnUiThread(new Runnable() {
                         public void run() {
-                            ED_convertedValue.setText(makeResultValueString);
+                            Toast.makeText(MainActivity.this, noInternet, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
-            }).start();
+                ED_convertedValue.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ED_convertedValue.setText(makeResultValueString);
+                    }
+                });
+            }
+        }).start();
     }
     public void onClick_copyResult(View view) {
         runOnUiThread(new Runnable() {
@@ -144,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         }
         catch (NullPointerException e) {
             Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
-    }
+        }
 
     }
     public void onClick_doReverse(View view){
