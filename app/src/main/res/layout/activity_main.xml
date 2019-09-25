@@ -7,12 +7,13 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="20dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="156dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-128dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,6 +32,9 @@
                 android:id="@+id/coefficientView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
                 android:hint="Here will be coefficient"
                 android:padding="15dp"
                 android:selectAllOnFocus="false"
@@ -38,10 +42,7 @@
                 android:textColor="#000000"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="359dp"
-                android:clickable="false"
-                android:focusable="false"
-                android:cursorVisible="false"/>
+                tools:layout_editor_absoluteY="359dp" />
 
         </LinearLayout>
 
@@ -161,6 +162,18 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="14sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/button_goToGraphic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:onClick="goToGraphic"
+            android:text="History of changing" />
 
     </LinearLayout>
 

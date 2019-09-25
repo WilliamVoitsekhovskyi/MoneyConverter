@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -170,5 +171,10 @@ public class MainActivity extends AppCompatActivity {
         SP_currencySelected.setSelection(SP_resultCurrencySelected.getSelectedItemPosition());
         SP_resultCurrencySelected.setSelection(buf);
         //Toast.makeText(MainActivity.this,  "test", Toast.LENGTH_SHORT).show();//
+    }
+
+    public void goToGraphic(View view){
+        Intent intent = new Intent(this, GraphicActivity.class);
+        startActivity(intent);
     }
 }
