@@ -68,11 +68,11 @@
             android:paddingBottom="20dp">
 
             <Spinner
-                android:id="@+id/changeСurrency"
+                android:id="@+id/changeCurrency"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:entries="@array/changeСurrency" />
+                android:entries="@array/changeCurrency" />
 
             <ImageButton
                 android:id="@+id/reverseButton"
@@ -86,10 +86,10 @@
                 app:srcCompat="@android:drawable/ic_popup_sync" />
 
             <Spinner
-                android:id="@+id/changeResultСurrency"
+                android:id="@+id/changeResultCurrency"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:entries="@array/changeСurrency"
+                android:entries="@array/changeCurrency"
                 android:gravity="right"
                 android:spinnerMode="dropdown" />
         </LinearLayout>

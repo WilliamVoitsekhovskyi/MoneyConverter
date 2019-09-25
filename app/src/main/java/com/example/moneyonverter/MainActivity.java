@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SP_resultCurrencySelected = findViewById(R.id.changeResultСurrency);
+        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
         SP_resultCurrencySelected.setSelection(3);
         if (android.os.Build.VERSION.SDK_INT > 19)
         {
@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         TV_coefficient.setFocusable(false);
         TV_updateInfo = findViewById(R.id.UpdateView);
 
-        SP_currencySelected = findViewById(R.id.changeСurrency);
-        SP_resultCurrencySelected = findViewById(R.id.changeResultСurrency);
+        SP_currencySelected = findViewById(R.id.changeCurrency);
+        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
 
         String currencyChoice = String.valueOf(SP_currencySelected.getSelectedItem());
         String resultCurrencyChoice = String.valueOf(SP_resultCurrencySelected.getSelectedItem());
@@ -164,8 +164,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onClick_doReverse(View view){
         int buf;
-        SP_currencySelected = findViewById(R.id.changeСurrency);
-        SP_resultCurrencySelected = findViewById(R.id.changeResultСurrency);
+        SP_currencySelected = findViewById(R.id.changeCurrency);
+        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
         buf = SP_currencySelected.getSelectedItemPosition();
         SP_currencySelected.setSelection(SP_resultCurrencySelected.getSelectedItemPosition());
         SP_resultCurrencySelected.setSelection(buf);
