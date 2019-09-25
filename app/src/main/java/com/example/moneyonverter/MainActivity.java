@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SP_resultCurrencySelected = findViewById(R.id.changeResultСurrency);
+        SP_resultCurrencySelected.setSelection(3);
         if (android.os.Build.VERSION.SDK_INT > 19)
         {
             StrictMode.ThreadPolicy policy = new
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 //        SP_resultCurrencySelected.setSelection(4);        //but it doesn't work in onCreate. why??
     }
 
-    public void onClick_setConvertedValue(View view){
+    public void onClick_setConvertedValue(final View view){
         UAH = getString(R.string.UAH);
         UAH_USD = getString(R.string.UAH_USD);
         noInternet = getString(R.string.noInternet);
@@ -68,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
         TV_coefficient.setFocusable(false);
         TV_updateInfo = findViewById(R.id.UpdateView);
 
-        reverseImageButton = findViewById(R.id.reverseButton);
-
         SP_currencySelected = findViewById(R.id.changeСurrency);
         SP_resultCurrencySelected = findViewById(R.id.changeResultСurrency);
 
@@ -77,13 +77,15 @@ public class MainActivity extends AppCompatActivity {
         String resultCurrencyChoice = String.valueOf(SP_resultCurrencySelected.getSelectedItem());
         comparedChoice = currencyChoice + "-" + resultCurrencyChoice;
 
+        reverseImageButton = findViewById(R.id.reverseButton);
+
         try {
             number = ED_enteredValue.getText().toString();
         }
         catch (NumberFormatException e){
             runOnUiThread(new Runnable() {
                 public void run() {
-                    Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
+                    showError();
                 }
             });
         }
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    makeCoefficientString = Informer.getExchangeRate(comparedChoice) + UAH_USD;
+                    makeCoefficientString = String.valueOf(Informer.getExchangeRate(comparedChoice));
                     TV_coefficient.post(new Runnable() {
                         @Override
                         public void run() {
@@ -106,12 +108,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                     try {
-                        makeResultValueString = Informer.getExchangeResult(Double.valueOf(number), comparedChoice) + " " + UAH;
+                        makeResultValueString = String.valueOf(Informer.getExchangeResult(Double.valueOf(number),  comparedChoice));
                     }
                     catch (NumberFormatException e){
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
+                                showError();
                             }
                         });
                     }                    }
@@ -131,6 +133,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+    private void showError(){
+        Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
+    }
+
     public void onClick_copyResult(View view) {
         runOnUiThread(new Runnable() {
             public void run() {
@@ -139,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                     ClipData clip = ClipData.newPlainText("label", ED_convertedValue.getText());
                     clipboard.setPrimaryClip(clip);
                 } catch (NullPointerException e) {
-                    Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
+                    showError();
                 }
             }
         });
@@ -151,12 +158,17 @@ public class MainActivity extends AppCompatActivity {
             clipboard.setPrimaryClip(clip);
         }
         catch (NullPointerException e) {
-            Toast.makeText(MainActivity.this, fieldEmpty, Toast.LENGTH_SHORT).show();
+            showError();
         }
 
     }
     public void onClick_doReverse(View view){
+        int buf;
+        SP_currencySelected = findViewById(R.id.changeСurrency);
+        SP_resultCurrencySelected = findViewById(R.id.changeResultСurrency);
+        buf = SP_currencySelected.getSelectedItemPosition();
+        SP_currencySelected.setSelection(SP_resultCurrencySelected.getSelectedItemPosition());
+        SP_resultCurrencySelected.setSelection(buf);
         Toast.makeText(MainActivity.this,  "test", Toast.LENGTH_SHORT).show();//
-
     }
 }

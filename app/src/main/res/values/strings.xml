@@ -6,7 +6,7 @@
     <string name="coefficient">Coefficient: </string>
     <string name="copyButton">Copy result</string>
     <string name="copyCoefficientButton">Copy coefficient</string>
-    <string-array name="changeСurrency">
+    <string-array name="changeCurrency">
         <item>USD</item>
         <item>EUR</item>
         <item>RUB</item>

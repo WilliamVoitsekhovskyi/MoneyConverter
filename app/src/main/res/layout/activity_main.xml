@@ -90,7 +90,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:entries="@array/changeСurrency"
-                android:gravity="right" />
+                android:gravity="right"
+                android:spinnerMode="dropdown" />
         </LinearLayout>
 
 
