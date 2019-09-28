@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         buf = SP_currencySelected.getSelectedItemPosition();
         SP_currencySelected.setSelection(SP_resultCurrencySelected.getSelectedItemPosition());
         SP_resultCurrencySelected.setSelection(buf);
-        Toast.makeText(MainActivity.this,  "test", Toast.LENGTH_SHORT).show();//
+        //Toast.makeText(MainActivity.this,  "test", Toast.LENGTH_SHORT).show();//
     }
 
     public void goToGraphic(View view){
