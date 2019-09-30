@@ -48,14 +48,14 @@
                 android:id="@+id/textView2"
                 android:layout_width="205dp"
                 android:layout_height="wrap_content"
-                android:text="Currency"
+                android:text="USD-UAH"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="203dp"
                 android:layout_height="wrap_content"
-                android:text="Time"
+                android:text="DD.MM.YYYY"
                 android:textSize="24sp" />
 
         </TableRow>
@@ -271,6 +271,27 @@
                 </TableLayout>
             </LinearLayout>
         </ScrollView>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#B8B6B6">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="205dp"
+                android:layout_height="wrap_content"
+                android:text="Currency rate"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="203dp"
+                android:layout_height="wrap_content"
+                android:text="Time"
+                android:textSize="24sp" />
+
+        </TableRow>
 
     </LinearLayout>
 
