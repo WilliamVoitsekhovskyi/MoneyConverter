@@ -39,8 +39,6 @@ public class CurrencyInfo {
     }
 
     public CurrencyInfo(String date, String code){
-        //   this.exchangeRate = exchangeRate;
-
         this.date = date;
         this.code = code;
     }

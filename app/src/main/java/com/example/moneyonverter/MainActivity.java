@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
         SP_resultCurrencySelected.setSelection(3);
-        init();
         if (android.os.Build.VERSION.SDK_INT > 19)
         {
             StrictMode.ThreadPolicy policy = new
@@ -75,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         reverseImageButton = findViewById(R.id.reverseButton);
     }
     public void onClick_setConvertedValue(final View view){
+        init();
         try {
             number = ED_enteredValue.getText().toString();
         }
