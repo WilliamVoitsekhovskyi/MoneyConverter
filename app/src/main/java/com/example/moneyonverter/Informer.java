@@ -1,14 +1,13 @@
 package com.example.moneyonverter;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 
+
 public class Informer {
-    public static void main(String[] args){
-    }
     //<span xmlns:fo="http://www.w3.org/1999/XSL/Format" style="float: right;font-size: 12px; ;color: #2d2d2d;padding:0;margin-bottom:30px">updated 13:00:11(EEST) 8/09/2019</span>
     private static Document getDocument() {
         Document doc = null;
