@@ -6,17 +6,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class CurrencyDateBaseHelper extends SQLiteOpenHelper {
+public class CurrencyDataBaseHelper extends SQLiteOpenHelper {
     private static final String DB_Name = "CurrencyRateDB";
     private static final int DB_Version = 1;
 
-    public CurrencyDateBaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public CurrencyDataBaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, DB_Name, factory, DB_Version);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        sqLiteDatabase.execSQL("");
     }
 
     @Override
