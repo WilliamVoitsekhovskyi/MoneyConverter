@@ -1,21 +1,18 @@
 package com.example.moneyonverter;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
     Spinner SP_currencySelected;
     Spinner SP_resultCurrencySelected;
 
-    String number;                                         //
-    String updateTime;                                     //
-    String UAH_USD;                                        // should be global
-    String UAH;                                            //
-    String fieldEmpty = "Field is empty";                  //should be from string values
-    String noInternet;                                     //
-    String makeCoefficientString;                          //
+    String number;
+    String updateTime;
+    String UAH_USD;
+    String UAH;
+    String fieldEmpty = "Field is empty";
+    String noInternet;
+    String makeCoefficientString;
     String makeResultValueString;
     String comparedChoice = "";
 
@@ -53,12 +50,8 @@ public class MainActivity extends AppCompatActivity {
                     StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-
-//        SP_currencySelected.setSelection(1);              //used to set choice by default
-//        SP_resultCurrencySelected.setSelection(4);        //but it doesn't work in onCreate. why??
     }
-
-    public void onClick_setConvertedValue(final View view){
+    public void init(){
         UAH = getString(R.string.UAH);
         UAH_USD = getString(R.string.UAH_USD);
         noInternet = getString(R.string.noInternet);
@@ -79,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
         comparedChoice = currencyChoice + "-" + resultCurrencyChoice;
 
         reverseImageButton = findViewById(R.id.reverseButton);
-
+    }
+    public void onClick_setConvertedValue(final View view){
+        init();
         try {
             number = ED_enteredValue.getText().toString();
         }
