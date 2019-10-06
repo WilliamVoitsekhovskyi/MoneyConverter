@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     Spinner SP_resultCurrencySelected;
 
     String number;                                         //
-    String updateTime;                                    //
-    String UAH_USD;                                       // should be global
+    String updateTime;                                     //
+    String UAH_USD;                                        // should be global
     String UAH;                                            //
     String fieldEmpty = "Field is empty";                  //should be from string values
     String noInternet;                                     //
@@ -170,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
         buf = SP_currencySelected.getSelectedItemPosition();
         SP_currencySelected.setSelection(SP_resultCurrencySelected.getSelectedItemPosition());
         SP_resultCurrencySelected.setSelection(buf);
-        //Toast.makeText(MainActivity.this,  "test", Toast.LENGTH_SHORT).show();//
     }
 
     public void goToGraphic(View view){
