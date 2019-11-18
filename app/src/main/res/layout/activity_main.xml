@@ -35,23 +35,17 @@
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"
-                android:hint="Here will be coefficient"
+                android:hint="@string/Hint_coefficient"
                 android:padding="15dp"
                 android:selectAllOnFocus="false"
                 android:singleLine="false"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="359dp" />
+                tools:layout_editor_absoluteY="359dp"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        </LinearLayout>
 
         <EditText
             android:id="@+id/enteredValue"
@@ -84,14 +78,15 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:tint="#000000"
-                app:srcCompat="@android:drawable/ic_popup_sync" />
+                app:srcCompat="@android:drawable/ic_popup_sync"
+                android:contentDescription="" />
 
             <Spinner
                 android:id="@+id/changeResultCurrency"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:entries="@array/changeCurrency"
-                android:gravity="right"
+                android:gravity="end"
                 android:spinnerMode="dropdown" />
         </LinearLayout>
 
@@ -145,7 +140,8 @@
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
                 android:onClick="onClick_copyCoefficient"
-                android:text="@string/copyCoefficientButton" />
+                android:text="@string/copyCoefficientButton"
+                />
 
             <Button
                 android:id="@+id/copyButton"
@@ -171,7 +167,7 @@
             android:id="@+id/button_goToGraphic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:onClick="goToGraphic"
             android:text="History of changing" />
 

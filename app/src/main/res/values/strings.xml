@@ -16,4 +16,5 @@
     <string name="UAH"> UAH</string>
     <string name="noInternet">No Internet connection!</string>
     <string name="fieldEmpty">The field is empty!</string>
+    <string name="Hint_coefficient">Here will be coefficient</string>
 </resources>

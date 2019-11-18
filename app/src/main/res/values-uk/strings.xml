@@ -9,4 +9,6 @@
     <string name="copyCoefficientButton">Копіювати коефіцієнт</string>
     <string name="noInternet">Немає з`єднання з інтернетом!</string>
     <string name="fieldEmpty">Пусте поле!</string>
+    <string name="Hint_coefficient">Коефіціент</string>
+
 </resources>
