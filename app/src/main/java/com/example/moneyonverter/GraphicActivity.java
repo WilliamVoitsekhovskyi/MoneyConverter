@@ -2,37 +2,41 @@ package com.example.moneyonverter;
 
 import android.content.ContentValues;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Spinner;
+
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.gson.Gson;
-import org.jsoup.Jsoup;
-import java.io.IOException;
 
 
 
 public class GraphicActivity extends AppCompatActivity {
+
+    Spinner SP_currencySelected;
+    Spinner SP_resultCurrencySelected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphic);
-        Gson gson = new Gson();
+
+        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
+        SP_resultCurrencySelected.setSelection(3);
 
         CurrencyDataBaseHelper currencyDataBaseHelper = new CurrencyDataBaseHelper(this, "CurrencyRateDB", 1 );   // here should be (this) not (this, "", 1 )
         ContentValues contentValues = new ContentValues();
 
-        try {
-            String url = "http://www.floatrates.com/daily/uah.json";
-            String json = Jsoup.connect(url).ignoreContentType(true).execute().body();
-            CurrencyInfo currencyInfo = gson.fromJson(json, CurrencyInfo.class);
-            System.out.println(gson.toJson(currencyInfo));
-            TextView textView = findViewById(R.id.textView);
-            textView.setText(currencyInfo.date);
-            TextView textView5 = findViewById(R.id.textView5);
-            textView5.setText(currencyInfo.code);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
 
+    }
+
+    public void onClick_doReverse(View view){
+        int buf;
+
+        SP_currencySelected = findViewById(R.id.changeCurrency);
+        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
+
+        buf = SP_currencySelected.getSelectedItemPosition();
+
+        SP_currencySelected.setSelection(SP_resultCurrencySelected.getSelectedItemPosition());
+        SP_resultCurrencySelected.setSelection(buf);
     }
 }

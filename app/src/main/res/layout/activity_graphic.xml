@@ -39,6 +39,12 @@
             android:gravity="right"
             android:spinnerMode="dropdown" />
 
+        <Button
+            android:id="@+id/button_showGraphic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show" />
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -196,13 +202,6 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/textView7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:textSize="24sp" />
-
-                        <TextView
                             android:id="@+id/textView8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -263,6 +262,13 @@
 
                         <TextView
                             android:id="@+id/textView15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:id="@+id/textView7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="TextView"
