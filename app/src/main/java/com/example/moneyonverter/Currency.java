@@ -21,20 +21,18 @@ public class Currency {
         return (JSONObject) object;
     }
 
-    public static double getCurrencyExchangeRate(String currencyCode, String currencyResultCode, String chosenRate) {
+    public static double getCurrencyExchangeRate(String currencyCode, String currencyResultCode, String chosenRate) throws IOException, ParseException {
 
         currencyCode = currencyCode.toLowerCase();
         currencyResultCode = currencyResultCode.toLowerCase();
 
-        JSONObject jsonObject = null;
 
-        try {
-            jsonObject = createJSONObject(currencyCode);
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
 
-        Map currency = ((Map)jsonObject.get(currencyResultCode));
+
+           JSONObject jsonObject = createJSONObject(currencyCode);
+
+        Map currency;
+        currency = ((Map)jsonObject.get(currencyResultCode));
         for (Map.Entry pair : (Iterable<Map.Entry>) currency.entrySet()) {
             if(pair.getKey().equals(chosenRate))
                 return (double) pair.getValue();
