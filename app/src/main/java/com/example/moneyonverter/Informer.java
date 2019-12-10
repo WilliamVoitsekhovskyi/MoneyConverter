@@ -27,7 +27,6 @@ public class Informer {
 
     public static double getExchangeRate(String currencyChoice) throws NullPointerException {                          // need be synchronized
         String attribute = "";
-        System.out.println(currencyChoice);
         switch (currencyChoice) {
             case "UAH-EUR":
                 attribute = "a[href=/UAH/EUR/]";

@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.math.BigDecimal;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner SP_currencySelected;
     Spinner SP_resultCurrencySelected;
 
-    String number;
-    String updateTime;
+    String amountOfMoney;
     String UAH_USD;
     String UAH;
     String fieldEmpty = "Field is empty";
@@ -35,7 +36,12 @@ public class MainActivity extends AppCompatActivity {
     String makeCoefficientString;
     String makeResultValueString;
     String comparedChoice = "";
+    String currencyChoice = "";
+    String resultCurrencyChoice = "";
 
+    BigDecimal coefficient;
+    BigDecimal result;
+    
     ImageButton reverseImageButton;
 
     @Override
@@ -46,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
         SP_resultCurrencySelected.setSelection(3);
         if (android.os.Build.VERSION.SDK_INT > 19)
         {
-            StrictMode.ThreadPolicy policy = new
-                    StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
     }
@@ -67,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
         SP_currencySelected = findViewById(R.id.changeCurrency);
         SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
 
-        String currencyChoice = String.valueOf(SP_currencySelected.getSelectedItem());
-        String resultCurrencyChoice = String.valueOf(SP_resultCurrencySelected.getSelectedItem());
+        currencyChoice = String.valueOf(SP_currencySelected.getSelectedItem());
+        resultCurrencyChoice = String.valueOf(SP_resultCurrencySelected.getSelectedItem());
         comparedChoice = currencyChoice + "-" + resultCurrencyChoice;
 
         reverseImageButton = findViewById(R.id.reverseButton);
@@ -76,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClick_setConvertedValue(final View view){
         init();
         try {
-            number = ED_enteredValue.getText().toString();
+            amountOfMoney = ED_enteredValue.getText().toString();
         }
         catch (NumberFormatException e){
             runOnUiThread(new Runnable() {
@@ -89,22 +94,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    makeCoefficientString = String.valueOf(Informer.getExchangeRate(comparedChoice));
+                    coefficient = BigDecimal.valueOf(Currency.getCurrencyExchangeRate(currencyChoice, resultCurrencyChoice,  "rate"));
+                    makeCoefficientString = String.valueOf(coefficient.setScale(2, BigDecimal.ROUND_HALF_UP));
                     TV_coefficient.post(new Runnable() {
                         @Override
                         public void run() {
                             TV_coefficient.setText(makeCoefficientString);
                         }
                     });
-                    updateTime = Informer.getUpdateTime();
                     TV_updateInfo.post(new Runnable() {
                         @Override
                         public void run() {
-                            TV_updateInfo.setText(updateTime);
+                            TV_updateInfo.setText(Currency.getDateOfUpdateCurrency());
                         }
                     });
                     try {
-                        makeResultValueString = String.valueOf(Informer.getExchangeResult(Double.valueOf(number),  comparedChoice));
+                        result = BigDecimal.valueOf(Double.valueOf(amountOfMoney) * Currency.getCurrencyExchangeRate(currencyChoice, resultCurrencyChoice, "rate"));
+
+                        makeResultValueString = String.valueOf(result.setScale(2, BigDecimal.ROUND_HALF_UP));
                     }
                     catch (NumberFormatException e){
                         runOnUiThread(new Runnable() {
