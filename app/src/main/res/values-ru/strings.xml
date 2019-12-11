@@ -10,5 +10,7 @@
     <string name="noInternet">Нет соединения с Интернетом!</string>
     <string name="fieldEmpty">Поле пустое!</string>
     <string name="Hint_coefficient">Коэффициент</string>
+    <string name="Hint">Ваш результат будет здесь</string>
+    <string name="history_of_changing_button">История изменения курсов</string>
 
 </resources>

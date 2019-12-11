@@ -11,7 +11,7 @@ import java.util.Map;
 public class Currency {
 
     private static JSONObject createJSONObject(String currencyCode) throws IOException, ParseException {
-        //http://www.floatrates.com/daily/usd.json
+        // website with JSON http://www.floatrates.com/daily/usd.json
 
         currencyCode = currencyCode.toLowerCase();
 
@@ -26,10 +26,7 @@ public class Currency {
         currencyCode = currencyCode.toLowerCase();
         currencyResultCode = currencyResultCode.toLowerCase();
 
-
-
-
-           JSONObject jsonObject = createJSONObject(currencyCode);
+        JSONObject jsonObject = createJSONObject(currencyCode);
 
         Map currency;
         currency = ((Map)jsonObject.get(currencyResultCode));
@@ -43,11 +40,13 @@ public class Currency {
     public static String getDateOfUpdateCurrency() {
 
         String dateStr = "date";
+
         //it's doesn't matter which code you'll use(they all update at the same time, but eur is the first currency in the list
         String currencyCode = "eur";
 
         JSONObject jsonObject = null;
         try {
+            //use usd because if you will use eur you can't parse information about eur
             jsonObject = createJSONObject("usd");
         } catch (IOException | ParseException e) {
             e.printStackTrace();
