@@ -31,7 +31,6 @@ public class GraphicActivity extends AppCompatActivity {
             webView.loadUrl ("javascript: document.getElementByClassName ('frame fm-middle');");
         }
 
-
         @TargetApi(Build.VERSION_CODES.N)
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -55,20 +54,29 @@ public class GraphicActivity extends AppCompatActivity {
 
         SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
         SP_resultCurrencySelected.setSelection(3);
+
         final MyWebViewClient MyWebViewClient = new MyWebViewClient();
+
         webView = findViewById(R.id.webView);
+
         webView.setWebViewClient(MyWebViewClient);
-        // включаем поддержку JavaScript
-        webView.getSettings().setJavaScriptEnabled(true);
+
         webView.loadUrl("http://www.floatrates.com/chart/usd/eur/");
-        webView.getSettings().setBuiltInZoomControls(true);
-        webView.scrollTo(0,1050);
-        //webView.clearFormData();
+
+        prepareWebPage();
 
         CurrencyDataBaseHelper currencyDataBaseHelper = new CurrencyDataBaseHelper(this, "CurrencyRateDB", 1 );   // here should be (this) not (this, "", 1 )
         ContentValues contentValues = new ContentValues();
 
 
+    }
+
+    private void prepareWebPage(){
+        webView.getSettings().setJavaScriptEnabled(true);
+
+        webView.getSettings().setBuiltInZoomControls(true);
+
+        webView.scrollTo(0,1050);
     }
 
     public void onClick_doReverse(View view){
