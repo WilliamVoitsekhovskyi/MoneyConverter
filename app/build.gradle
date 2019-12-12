@@ -32,4 +32,5 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.12.1'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation fileTree(dir: 'C:\\json', include: ['*.aar', '*.jar'], exclude: [])
+    implementation fileTree(dir: 'C:\\Program Files\\JSON\\json-simple-1.1.jar', include: ['*.aar', '*.jar'], exclude: [])
 }

@@ -93,12 +93,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+//        coefficient = BigDecimal.valueOf(Currency.getCurrencyExchangeRate(currencyChoice, resultCurrencyChoice,  "rate"));
+//        makeCoefficientString = String.valueOf(coefficient.setScale(2, BigDecimal.ROUND_HALF_UP));
+//        TV_coefficient.setText(makeCoefficientString);
+//        TV_coefficient.setText(Viewer.getCoefficient(currencyChoice, resultCurrencyChoice));
+
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    coefficient = BigDecimal.valueOf(Currency.getCurrencyExchangeRate(currencyChoice, resultCurrencyChoice,  "rate"));
-                    makeCoefficientString = String.valueOf(coefficient.setScale(2, BigDecimal.ROUND_HALF_UP));
+                    makeCoefficientString = Viewer.getCoefficient(currencyChoice, resultCurrencyChoice);
                     TV_coefficient.post(new Runnable() {
                         @Override
                         public void run() {
@@ -112,9 +118,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                     try {
-                        result = BigDecimal.valueOf(Double.valueOf(amountOfMoney) * Currency.getCurrencyExchangeRate(currencyChoice, resultCurrencyChoice, "rate"));
 
-                        makeResultValueString = String.valueOf(result.setScale(2, BigDecimal.ROUND_HALF_UP));
+                        makeResultValueString = Viewer.getResult(amountOfMoney, currencyChoice, resultCurrencyChoice);
                     }
                     catch (NumberFormatException e){
                         runOnUiThread(new Runnable() {
