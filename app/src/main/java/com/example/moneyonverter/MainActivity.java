@@ -32,18 +32,13 @@ public class MainActivity extends AppCompatActivity {
     Spinner SP_resultCurrencySelected;
 
     String amountOfMoney;
-    String UAH_USD;
-    String UAH;
     String fieldEmpty = "Field is empty";
     String noInternet;
-    String makeCoefficientString;
-    String makeResultValueString;
+    String coefficientString;
+    String resultValueString;
     String comparedChoice = "";
     String currencyChoice = "";
     String resultCurrencyChoice = "";
-
-    BigDecimal coefficient;
-    BigDecimal result;
 
     ImageButton reverseImageButton;
 
@@ -51,17 +46,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
-        SP_resultCurrencySelected.setSelection(3);
+
+        setDefaultCurrencyChoice();
+
         if (android.os.Build.VERSION.SDK_INT > 19)
         {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
     }
+
+    public void setDefaultCurrencyChoice(){
+        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
+        SP_resultCurrencySelected.setSelection(3);
+    }
+
     public void init(){
-        UAH = getString(R.string.UAH);
-        UAH_USD = getString(R.string.UAH_USD);
         noInternet = getString(R.string.noInternet);
 
         ED_enteredValue = findViewById(R.id.enteredValue);
@@ -94,21 +94,16 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-//        coefficient = BigDecimal.valueOf(Currency.getCurrencyExchangeRate(currencyChoice, resultCurrencyChoice,  "rate"));
-//        makeCoefficientString = String.valueOf(coefficient.setScale(2, BigDecimal.ROUND_HALF_UP));
-//        TV_coefficient.setText(makeCoefficientString);
-//        TV_coefficient.setText(Viewer.getCoefficient(currencyChoice, resultCurrencyChoice));
-
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    makeCoefficientString = Viewer.getCoefficient(currencyChoice, resultCurrencyChoice);
+                    coefficientString = Viewer.getCoefficient(currencyChoice, resultCurrencyChoice);
                     TV_coefficient.post(new Runnable() {
                         @Override
                         public void run() {
-                            TV_coefficient.setText(makeCoefficientString);
+                            TV_coefficient.setText(coefficientString);
                         }
                     });
                     TV_updateInfo.post(new Runnable() {
@@ -119,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                     try {
 
-                        makeResultValueString = Viewer.getResult(amountOfMoney, currencyChoice, resultCurrencyChoice);
+                        resultValueString = Viewer.getResult(amountOfMoney, currencyChoice, resultCurrencyChoice);
                     }
                     catch (NumberFormatException e){
                         runOnUiThread(new Runnable() {
@@ -147,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 ED_convertedValue.post(new Runnable() {
                     @Override
                     public void run() {
-                        ED_convertedValue.setText(makeResultValueString);
+                        ED_convertedValue.setText(resultValueString);
                     }
                 });
             }

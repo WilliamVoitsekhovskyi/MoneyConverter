@@ -5,10 +5,12 @@
     <string name="convert_button">Конвертувати</string>
     <string name="result">Результат:</string>
     <string name="coefficient">Коефіціент</string>
-    <string name="copyButton">Копіювати результа</string>
+    <string name="copyButton">Копіювати результат</string>
     <string name="copyCoefficientButton">Копіювати коефіцієнт</string>
     <string name="noInternet">Немає з`єднання з інтернетом!</string>
     <string name="fieldEmpty">Пусте поле!</string>
     <string name="Hint_coefficient">Коефіціент</string>
+    <string name="Hint">Ваш результат буде тут</string>
+    <string name="history_of_changing_button">Історія зміни курсів</string>
 
 </resources>

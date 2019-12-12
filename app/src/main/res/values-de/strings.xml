@@ -10,6 +10,6 @@
     <string name="noInternet">Keine Internetverbindung!</string>
     <string name="fieldEmpty">Das Feld ist leer!</string>
     <string name="Hint_coefficient">Hier wird Koeffizient sein</string>
-
-
+    <string name="Hint">Ihr Ergebnis wird hier sein</string>
+    <string name="history_of_changing_button">Geschichte der Wechselkurse</string>
 </resources>
