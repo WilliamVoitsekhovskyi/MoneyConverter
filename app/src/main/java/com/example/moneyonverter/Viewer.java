@@ -1,11 +1,10 @@
 package com.example.moneyonverter;
 
 import org.json.simple.parser.ParseException;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 
-public class Viewer extends Thread{
+public class Viewer extends Thread {
 
    private static int scale = 2;
    /*rename: tmp in getCoefficient method
