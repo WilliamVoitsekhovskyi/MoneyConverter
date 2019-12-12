@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -122,9 +121,7 @@ public class MainActivity extends AppCompatActivity {
                                 showError();
                             }
                         });
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
+                    } catch (ParseException | IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -134,9 +131,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, noInternet, Toast.LENGTH_SHORT).show();
                         }
                     });
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
+                } catch (ParseException | IOException e) {
                     e.printStackTrace();
                 }
                 ED_convertedValue.post(new Runnable() {

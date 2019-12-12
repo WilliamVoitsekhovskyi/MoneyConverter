@@ -1,13 +1,10 @@
 package com.example.moneyonverter;
 
-import android.widget.EditText;
-
 import org.json.simple.parser.ParseException;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 
-public class Viewer extends Thread{
+public class Viewer extends Thread {
 
 
    /*rename: tmp in getCoefficient method
