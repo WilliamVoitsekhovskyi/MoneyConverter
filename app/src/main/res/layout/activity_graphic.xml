@@ -43,6 +43,7 @@
             android:id="@+id/button_showGraphic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onClick_showGraphic"
             android:text="Show" />
 
         <WebView

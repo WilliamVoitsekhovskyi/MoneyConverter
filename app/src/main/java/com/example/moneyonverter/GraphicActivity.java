@@ -1,15 +1,14 @@
 package com.example.moneyonverter;
 
-import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Spinner;
 
+import MoneyConverterData.CurrencyDataBaseHelper;
+import MoneyConverterJSON.WebViewer;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,32 +18,13 @@ public class GraphicActivity extends AppCompatActivity {
 
     Spinner SP_currencySelected;
     Spinner SP_resultCurrencySelected;
+
+    String currencyChoice;
+    String resultCurrencyChoice;
+
     private WebView webView;
 
-    private class MyWebViewClient extends WebViewClient {
 
-
-
-        @Override
-        public void onPageFinished(WebView view, String url)
-        {
-            webView.loadUrl ("javascript: document.getElementByClassName ('frame fm-middle');");
-        }
-
-        @TargetApi(Build.VERSION_CODES.N)
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-            view.loadUrl(request.getUrl().toString());
-            return true;
-        }
-
-        // Для старых устройств
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return true;
-        }
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -52,42 +32,46 @@ public class GraphicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphic);
 
-        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
+        initAllSpinners();
         SP_resultCurrencySelected.setSelection(3);
 
-        final MyWebViewClient MyWebViewClient = new MyWebViewClient();
+        final WebViewer webViewClient = new WebViewer();
 
         webView = findViewById(R.id.webView);
 
-        webView.setWebViewClient(MyWebViewClient);
+        webView.setWebViewClient(webViewClient);
 
-        webView.loadUrl("http://www.floatrates.com/chart/usd/eur/");
+        webViewClient.prepareWebPage(webView);
 
-        prepareWebPage();
+    //    init();
 
         CurrencyDataBaseHelper currencyDataBaseHelper = new CurrencyDataBaseHelper(this, "CurrencyRateDB", 1 );   // here should be (this) not (this, "", 1 )
         ContentValues contentValues = new ContentValues();
-
-
     }
 
-    private void prepareWebPage(){
-        webView.getSettings().setJavaScriptEnabled(true);
-
-        webView.getSettings().setBuiltInZoomControls(true);
-
-        webView.scrollTo(0,1050);
+    private void initAllSpinners() {
+        SP_currencySelected = findViewById(R.id.changeCurrency);
+        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
     }
 
     public void onClick_doReverse(View view){
         int buf;
 
-        SP_currencySelected = findViewById(R.id.changeCurrency);
-        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
+        initAllSpinners();
 
         buf = SP_currencySelected.getSelectedItemPosition();
 
         SP_currencySelected.setSelection(SP_resultCurrencySelected.getSelectedItemPosition());
         SP_resultCurrencySelected.setSelection(buf);
+    }
+
+    public void onClick_showGraphic(View view){
+        initAllSpinners();
+
+        currencyChoice = String.valueOf(SP_currencySelected.getSelectedItem());
+        resultCurrencyChoice = String.valueOf(SP_resultCurrencySelected.getSelectedItem());
+
+        WebViewer.getGraphic(webView, currencyChoice, resultCurrencyChoice);
+
     }
 }

@@ -1,4 +1,4 @@
-package com.example.moneyonverter;
+package MoneyConverterData;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

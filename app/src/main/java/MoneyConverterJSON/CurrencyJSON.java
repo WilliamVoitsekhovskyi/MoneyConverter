@@ -1,4 +1,4 @@
-package com.example.moneyonverter;
+package MoneyConverterJSON;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
