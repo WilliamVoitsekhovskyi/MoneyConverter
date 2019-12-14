@@ -1,4 +1,4 @@
-package com.example.moneyonverter;
+package com.example.MoneyConverter;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
