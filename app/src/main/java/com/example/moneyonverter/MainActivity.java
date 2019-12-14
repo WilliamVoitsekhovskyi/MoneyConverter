@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         comparedChoice = currencyChoice + "-" + resultCurrencyChoice;
 
         reverseImageButton = findViewById(R.id.reverseButton);
+
     }
     public void onClick_setConvertedValue(final View view){
         init();
@@ -94,54 +95,118 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                try {
+//                    coefficientString = Viewer.getCoefficient(currencyChoice, resultCurrencyChoice);
+//                    TV_coefficient.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            TV_coefficient.setText(coefficientString);
+//                        }
+//                    });
+//                    TV_updateInfo.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            TV_updateInfo.setText(Currency.getDateOfUpdateCurrency());
+//                        }
+//                    });
+//                    try {
+//
+//                        resultValueString = Viewer.getResult(amountOfMoney, currencyChoice, resultCurrencyChoice);
+//                    }
+//                    catch (NumberFormatException e){
+//                        runOnUiThread(new Runnable() {
+//                            public void run() {
+//                                showError();
+//                            }
+//                        });
+//                    } catch (ParseException | IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//                catch (NullPointerException e){
+//                    runOnUiThread(new Runnable() {
+//                        public void run() {
+//                            Toast.makeText(MainActivity.this, noInternet, Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                } catch (ParseException | IOException e) {
+//                    e.printStackTrace();
+//                }
+//                ED_convertedValue.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        ED_convertedValue.setText(resultValueString);
+//                    }
+//                });
+//            }
+//        }).start();
+
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    coefficientString = Viewer.getCoefficient(currencyChoice, resultCurrencyChoice);
-                    TV_coefficient.post(new Runnable() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            coefficientString = Viewer.getCoefficient(currencyChoice, resultCurrencyChoice);
+                        } catch (IOException | ParseException e) {
+                            e.printStackTrace();
+                        }
+                        TV_coefficient.post(new Runnable() {
                         @Override
                         public void run() {
                             TV_coefficient.setText(coefficientString);
                         }
                     });
-                    TV_updateInfo.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            TV_updateInfo.setText(Currency.getDateOfUpdateCurrency());
-                        }
-                    });
-                    try {
+                    }
+                }).start();
 
-                        resultValueString = Viewer.getResult(amountOfMoney, currencyChoice, resultCurrencyChoice);
-                    }
-                    catch (NumberFormatException e){
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                showError();
-                            }
-                        });
-                    } catch (ParseException | IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                catch (NullPointerException e){
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(MainActivity.this, noInternet, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                } catch (ParseException | IOException e) {
-                    e.printStackTrace();
-                }
-                ED_convertedValue.post(new Runnable() {
+
+
+                new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        ED_convertedValue.setText(resultValueString);
+                        TV_updateInfo.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                TV_updateInfo.setText(Currency.getDateOfUpdateCurrency());
+                            }
+                        });
+
                     }
-                });
+                }).start();
+
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            resultValueString = Viewer.getResult(amountOfMoney, currencyChoice, resultCurrencyChoice);
+                        } catch (IOException | ParseException e) {
+                            e.printStackTrace();
+                        }
+                        ED_convertedValue.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                ED_convertedValue.setText(resultValueString);
+                            }
+                        });
+
+
+
+                    }
+                }).start();
+
             }
         }).start();
+
+
+
     }
 
     private void showError(){

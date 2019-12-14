@@ -53,7 +53,7 @@ public class Currency {
         }
 
 
-
+        assert jsonObject != null;
         Map currency = ((Map) jsonObject.get(currencyCode));
 
         for (Map.Entry pair : (Iterable<Map.Entry>) currency.entrySet()) {

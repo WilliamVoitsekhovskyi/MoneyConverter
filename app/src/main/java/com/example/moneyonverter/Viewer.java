@@ -24,6 +24,6 @@ public class Viewer extends Thread {
       return String.valueOf(result.setScale(2, BigDecimal.ROUND_HALF_UP));
    }
 
-
+   public static void a(){}
 
 }
