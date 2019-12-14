@@ -82,7 +82,7 @@
                 android:paddingBottom="10dp"
                 android:tint="#000000"
                 app:srcCompat="@android:drawable/ic_popup_sync"
-                android:contentDescription="" />
+                tools:ignore="ContentDescription" />
 
             <Spinner
                 android:id="@+id/changeResultCurrency"
@@ -145,7 +145,7 @@
                 android:layout_height="match_parent"
                 android:onClick="onClick_copyCoefficient"
                 android:text="@string/copyCoefficientButton"
-                />
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:id="@+id/copyButton"
@@ -163,17 +163,13 @@
             android:text=""
             android:textSize="14sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
         <Button
             android:id="@+id/button_goToGraphic"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:onClick="goToGraphic"
-            android:text="@string/history_of_changing_button" />
+            android:text="@string/graphics_of_exchange_rates" />
 
     </LinearLayout>
 
