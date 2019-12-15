@@ -11,6 +11,10 @@
         <item>EUR</item>
         <item>RUB</item>
         <item>UAH</item>
+        <item>PLN</item>
+        <item>GBP</item>
+        <item>CZK</item>
+        <item>BYN</item>
     </string-array>
     <string name="noInternet">No Internet connection!</string>
     <string name="fieldEmpty">The field is empty!</string>
