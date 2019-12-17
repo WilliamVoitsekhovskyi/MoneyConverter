@@ -1,4 +1,4 @@
-package com.example.moneyonverter;
+package MoneyConverterJSON;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -8,7 +8,7 @@ import org.jsoup.Jsoup;
 import java.io.IOException;
 import java.util.Map;
 
-public class Currency {
+public class CurrencyJSON {
 
     private static JSONObject createJSONObject(String currencyCode) throws IOException, ParseException {
         // website with JSON http://www.floatrates.com/daily/usd.json
@@ -21,8 +21,8 @@ public class Currency {
         return (JSONObject) object;
     }
 
-    public static double getCurrencyExchangeRate(String currencyCode, String currencyResultCode, String chosenRate) throws IOException, ParseException {
-
+    public static double getCurrencyExchangeRate(String currencyCode, String currencyResultCode) throws IOException, ParseException {
+        String chosenRate = "rate";
         currencyCode = currencyCode.toLowerCase();
         currencyResultCode = currencyResultCode.toLowerCase();
 

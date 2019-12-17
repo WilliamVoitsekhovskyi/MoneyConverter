@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".GraphicActivity">
 
     <LinearLayout
@@ -36,14 +37,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/changeCurrency"
-            android:gravity="right"
+            android:gravity=""
             android:spinnerMode="dropdown" />
 
         <Button
             android:id="@+id/button_showGraphic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show" />
+            android:onClick="onClick_showGraphic"
+            android:text="@string/button_show" />
 
         <WebView
             android:id="@+id/webView"

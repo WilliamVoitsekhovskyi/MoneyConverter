@@ -11,10 +11,16 @@
         <item>EUR</item>
         <item>RUB</item>
         <item>UAH</item>
+        <item>PLN</item>
+        <item>GBP</item>
+        <item>CZK</item>
+        <item>BYN</item>
     </string-array>
     <string name="noInternet">No Internet connection!</string>
     <string name="fieldEmpty">The field is empty!</string>
     <string name="Hint_coefficient">Here will be coefficient</string>
     <string name="Hint">Your result will be here</string>
     <string name="history_of_changing_button">History of exchange rates</string>
+    <string name="button_show">Show</string>
+    <string name="graphics_of_exchange_rates">Graphics of exchange rates</string>
 </resources>

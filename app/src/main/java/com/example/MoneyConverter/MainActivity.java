@@ -1,4 +1,4 @@
-package com.example.moneyonverter;
+package com.example.MoneyConverter;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import MoneyConverterData.ResultCounter;
+import MoneyConverterJSON.CurrencyJSON;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.simple.parser.ParseException;
@@ -35,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     String noInternet;
     String coefficientString;
     String resultValueString;
-    String comparedChoice = "";
     String currencyChoice = "";
     String resultCurrencyChoice = "";
 
@@ -63,24 +64,33 @@ public class MainActivity extends AppCompatActivity {
     public void init(){
         noInternet = getString(R.string.noInternet);
 
-        ED_enteredValue = findViewById(R.id.enteredValue);
-        ED_convertedValue = findViewById(R.id.resultView);
-        ED_convertedValue.setFocusable(false);
-
-        TV_coefficient = findViewById(R.id.coefficientView);
-        TV_coefficient.setFocusable(false);
-        TV_updateInfo = findViewById(R.id.UpdateView);
-
-        SP_currencySelected = findViewById(R.id.changeCurrency);
-        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
+        initAllEditTexts();
+        initAllTextViewers();
+        initAllSpinners();
 
         currencyChoice = String.valueOf(SP_currencySelected.getSelectedItem());
         resultCurrencyChoice = String.valueOf(SP_resultCurrencySelected.getSelectedItem());
-        comparedChoice = currencyChoice + "-" + resultCurrencyChoice;
 
         reverseImageButton = findViewById(R.id.reverseButton);
-
     }
+
+    private void initAllEditTexts(){
+        ED_enteredValue = findViewById(R.id.enteredValue);
+        ED_convertedValue = findViewById(R.id.resultView);
+        ED_convertedValue.setFocusable(false);
+    }
+
+    private void initAllTextViewers(){
+        TV_coefficient = findViewById(R.id.coefficientView);
+        TV_coefficient.setFocusable(false);
+        TV_updateInfo = findViewById(R.id.UpdateView);
+    }
+
+    private void initAllSpinners(){
+        SP_currencySelected = findViewById(R.id.changeCurrency);
+        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
+    }
+
     public void onClick_setConvertedValue(final View view){
         init();
         try {
@@ -95,118 +105,54 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                try {
-//                    coefficientString = Viewer.getCoefficient(currencyChoice, resultCurrencyChoice);
-//                    TV_coefficient.post(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            TV_coefficient.setText(coefficientString);
-//                        }
-//                    });
-//                    TV_updateInfo.post(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            TV_updateInfo.setText(Currency.getDateOfUpdateCurrency());
-//                        }
-//                    });
-//                    try {
-//
-//                        resultValueString = Viewer.getResult(amountOfMoney, currencyChoice, resultCurrencyChoice);
-//                    }
-//                    catch (NumberFormatException e){
-//                        runOnUiThread(new Runnable() {
-//                            public void run() {
-//                                showError();
-//                            }
-//                        });
-//                    } catch (ParseException | IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                catch (NullPointerException e){
-//                    runOnUiThread(new Runnable() {
-//                        public void run() {
-//                            Toast.makeText(MainActivity.this, noInternet, Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                } catch (ParseException | IOException e) {
-//                    e.printStackTrace();
-//                }
-//                ED_convertedValue.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        ED_convertedValue.setText(resultValueString);
-//                    }
-//                });
-//            }
-//        }).start();
-
         new Thread(new Runnable() {
             @Override
             public void run() {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            coefficientString = Viewer.getCoefficient(currencyChoice, resultCurrencyChoice);
-                        } catch (IOException | ParseException e) {
-                            e.printStackTrace();
-                        }
-                        TV_coefficient.post(new Runnable() {
+                try {
+                    coefficientString = ResultCounter.getCoefficient(currencyChoice, resultCurrencyChoice);
+                    TV_coefficient.post(new Runnable() {
                         @Override
                         public void run() {
                             TV_coefficient.setText(coefficientString);
                         }
                     });
-                    }
-                }).start();
-
-
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        TV_updateInfo.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                TV_updateInfo.setText(Currency.getDateOfUpdateCurrency());
-                            }
-                        });
-
-                    }
-                }).start();
-
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        try {
-                            resultValueString = Viewer.getResult(amountOfMoney, currencyChoice, resultCurrencyChoice);
-                        } catch (IOException | ParseException e) {
-                            e.printStackTrace();
+                    TV_updateInfo.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            TV_updateInfo.setText(CurrencyJSON.getDateOfUpdateCurrency());
                         }
-                        ED_convertedValue.post(new Runnable() {
-                            @Override
+                    });
+                    try {
+
+                        resultValueString = ResultCounter.getResult(amountOfMoney, currencyChoice, resultCurrencyChoice);
+                    }
+                    catch (NumberFormatException e){
+                        runOnUiThread(new Runnable() {
                             public void run() {
-                                ED_convertedValue.setText(resultValueString);
+                                showError();
                             }
                         });
-
-
-
+                    } catch (ParseException | IOException e) {
+                        e.printStackTrace();
                     }
-                }).start();
-
+                }
+                catch (NullPointerException e){
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(MainActivity.this, noInternet, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } catch (ParseException | IOException e) {
+                    e.printStackTrace();
+                }
+                ED_convertedValue.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ED_convertedValue.setText(resultValueString);
+                    }
+                });
             }
         }).start();
-
-
-
     }
 
     private void showError(){
@@ -239,8 +185,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onClick_doReverse(View view){
         int buf;
-        SP_currencySelected = findViewById(R.id.changeCurrency);
-        SP_resultCurrencySelected = findViewById(R.id.changeResultCurrency);
+
+        initAllSpinners();
+
         buf = SP_currencySelected.getSelectedItemPosition();
         SP_currencySelected.setSelection(SP_resultCurrencySelected.getSelectedItemPosition());
         SP_resultCurrencySelected.setSelection(buf);
