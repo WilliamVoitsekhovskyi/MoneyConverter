@@ -142,8 +142,9 @@
 
             <Button
                 android:id="@+id/copyCoefficientButton"
-                android:layout_width="180dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="0.5"
                 android:onClick="onClick_copyCoefficient"
                 android:text="@string/copyCoefficientButton"
                 tools:ignore="ButtonStyle" />
@@ -153,6 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:onClick="onClick_copyResult"
+                android:layout_weight="0.5"
                 android:text="@string/copyButton" />
 
         </LinearLayout>
