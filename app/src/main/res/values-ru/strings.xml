@@ -11,6 +11,6 @@
     <string name="fieldEmpty">Поле пустое!</string>
     <string name="Hint_coefficient">Коэффициент</string>
     <string name="Hint">Ваш результат будет здесь</string>
-    <string name="history_of_changing_button">История изменения курсов</string>
-
+    <string name="graphics_of_exchange_rates">График валютных курсов</string>
+    <string name="button_show">Найти</string>
 </resources>
