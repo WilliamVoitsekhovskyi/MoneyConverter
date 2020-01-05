@@ -7,36 +7,119 @@
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-128dp">
-
+        android:layout_height="match_parent">
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-128dp">
 
-            <TextView
-                android:id="@+id/coefficient"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/coefficient"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/coefficientView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:focusable="false"
-                android:hint="@string/Hint_coefficient"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/coefficient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/coefficient"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/coefficientView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:hint="@string/Hint_coefficient"
+                    android:padding="15dp"
+                    android:selectAllOnFocus="false"
+                    android:singleLine="false"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="1dp"
+                    tools:layout_editor_absoluteY="359dp"
+                    android:importantForAutofill="no"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/enteredValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/enter_value"
+                android:inputType="numberDecimal"
+                android:importantForAutofill="no" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
+
+                <Spinner
+                    android:id="@+id/changeCurrency"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:entries="@array/changeCurrency" />
+
+                <ImageButton
+                    android:id="@+id/reverseButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
+                    android:onClick="onClick_doReverse"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:tint="#000000"
+                    app:srcCompat="@android:drawable/ic_popup_sync"
+                    tools:ignore="ContentDescription" />
+
+                <Spinner
+                    android:id="@+id/changeResultCurrency"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:entries="@array/changeCurrency"
+                    android:gravity="end"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="@string/result"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/resultView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Hint"
+                android:inputType="number"
                 android:padding="15dp"
                 android:selectAllOnFocus="false"
                 android:singleLine="false"
@@ -44,144 +127,66 @@
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="1dp"
                 tools:layout_editor_absoluteY="359dp"
-                android:importantForAutofill="no"
-                android:inputType="text" />
+                android:importantForAutofill="no" />
 
-        </LinearLayout>
-
-
-        <EditText
-            android:id="@+id/enteredValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/enter_value"
-            android:inputType="numberDecimal"
-            android:importantForAutofill="no" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp">
-
-            <Spinner
-                android:id="@+id/changeCurrency"
+            <Button
+                android:id="@+id/convertButton"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:entries="@array/changeCurrency" />
+                android:layout_height="76dp"
+                android:onClick="onClick_setConvertedValue"
+                android:text="@string/convert_button"
+                tools:layout_editor_absoluteX="42dp"
+                tools:layout_editor_absoluteY="536dp" />
 
-            <ImageButton
-                android:id="@+id/reverseButton"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#00FFFFFF"
-                android:onClick="onClick_doReverse"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:tint="#000000"
-                app:srcCompat="@android:drawable/ic_popup_sync"
-                tools:ignore="ContentDescription" />
+                android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/changeResultCurrency"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:entries="@array/changeCurrency"
-                android:gravity="end"
-                android:spinnerMode="dropdown" />
-        </LinearLayout>
+                <Button
+                    android:id="@+id/copyCoefficientButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:onClick="onClick_copyCoefficient"
+                    android:text="@string/copyCoefficientButton"
+                    tools:ignore="ButtonStyle" />
 
+                <Button
+                    android:id="@+id/copyButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="onClick_copyResult"
+                    android:layout_weight="0.5"
+                    android:text="@string/copyButton" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/result"
-                android:layout_width="wrap_content"
+                android:id="@+id/UpdateView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/result"
-                android:textColor="#000000"
-                android:textSize="18sp" />
+                android:text=""
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/button_goToGraphic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:onClick="goToGraphic"
+                android:text="@string/graphics_of_exchange_rates" />
+
+            <Button
+                android:id="@+id/updateRateInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/updateRateInformation"
+                android:onClick="onClick_updateRateInformation"/>
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/resultView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/Hint"
-            android:inputType="number"
-            android:padding="15dp"
-            android:selectAllOnFocus="false"
-            android:singleLine="false"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="359dp"
-            android:importantForAutofill="no" />
-
-        <Button
-            android:id="@+id/convertButton"
-            android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:onClick="onClick_setConvertedValue"
-            android:text="@string/convert_button"
-            tools:layout_editor_absoluteX="42dp"
-            tools:layout_editor_absoluteY="536dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/copyCoefficientButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:onClick="onClick_copyCoefficient"
-                android:text="@string/copyCoefficientButton"
-                tools:ignore="ButtonStyle" />
-
-            <Button
-                android:id="@+id/copyButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:onClick="onClick_copyResult"
-                android:layout_weight="0.5"
-                android:text="@string/copyButton" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/UpdateView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/button_goToGraphic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:onClick="goToGraphic"
-            android:text="@string/graphics_of_exchange_rates" />
-
-        <Button
-            android:id="@+id/updateRateInformation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/updateRateInformation"
-            android:onClick="onClick_updateRateInformation"/>
-
-    </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

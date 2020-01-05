@@ -44,36 +44,36 @@ public class DataBaseWorker {
         database.close();
     }
 
-//    public static String DB_test (Context context){
-//        CurrencyDataBaseHelper currencyDataBaseHelper = new CurrencyDataBaseHelper(context, CurrencyDataBaseHelper.DB_Name, 1 );
-//        SQLiteDatabase database = currencyDataBaseHelper.getReadableDatabase();
-//        Cursor cursor = database.query(CurrencyDataBaseHelper.TABLE_NAME,null,null, null,null,null,null);
-//        String test = "test";
-//
-//        System.out.println("зайшов в метод");
-//
-//
-//        if (cursor.moveToFirst()){
-//            do {
-//                int idIndex = cursor.getColumnIndex(CurrencyDataBaseHelper.COL1_ID);
-//                int idCurrencyName = cursor.getColumnIndex(CurrencyDataBaseHelper.COL2_CURRENCY_NAME);
-//                int idRate = cursor.getColumnIndex(CurrencyDataBaseHelper.COL3_RATE);
-//                int idDate = cursor.getColumnIndex(CurrencyDataBaseHelper.COL4_TIME);
-//
-//                System.out.println("получив індекси");
-//
-//
-//
-//                test += "\n" + "ID - " + cursor.getInt(idIndex) + "\n"
-//                        + "NAME - " + cursor.getString(idCurrencyName) + "\n"
-//                        + "RATE - " + cursor.getString(idRate) + "\n"
-//                        + "DATE - " + cursor.getString(idDate) + "\n";
-//
-//                System.out.println("почав получати данні з бази");
-//
-//            }while (cursor.moveToNext());
-//
-//        }
+    public static String DB_test (Context context){
+        CurrencyDataBaseHelper currencyDataBaseHelper = new CurrencyDataBaseHelper(context, CurrencyDataBaseHelper.DB_Name, 1 );
+        SQLiteDatabase database = currencyDataBaseHelper.getReadableDatabase();
+        Cursor cursor = database.query(CurrencyDataBaseHelper.TABLE_NAME,null,null, null,null,null,null);
+        String test = "test";
+
+        System.out.println("зайшов в метод");
+
+
+        if (cursor.moveToFirst()){
+            do {
+                int idIndex = cursor.getColumnIndex(CurrencyDataBaseHelper.COL1_ID);
+                int idCurrencyName = cursor.getColumnIndex(CurrencyDataBaseHelper.COL2_CURRENCY_NAME);
+                int idRate = cursor.getColumnIndex(CurrencyDataBaseHelper.COL3_RATE);
+                int idDate = cursor.getColumnIndex(CurrencyDataBaseHelper.COL4_TIME);
+
+                System.out.println("получив індекси");
+
+
+
+                test += "\n" + "ID - " + cursor.getInt(idIndex) + "\n"
+                        + "NAME - " + cursor.getString(idCurrencyName) + "\n"
+                        + "RATE - " + cursor.getString(idRate) + "\n"
+                        + "DATE - " + cursor.getString(idDate) + "\n";
+
+                System.out.println("почав получати данні з бази");
+
+            }while (cursor.moveToNext());
+
+        }
 //        String currencyChoice = "UAH";
 //        String resultCurrencyChoice = "USD";
 //        String wishedCurrency = currencyChoice + "-" + resultCurrencyChoice;
@@ -85,13 +85,13 @@ public class DataBaseWorker {
 //                    cursor.getString(cursor.getColumnIndex(CurrencyDataBaseHelper.COL3_RATE)) +"\n" +
 //                    cursor.getString(cursor.getColumnIndex(CurrencyDataBaseHelper.COL4_TIME)) +"\n";
 //        }
-//
-//        System.out.println("вивів");
-//        currencyDataBaseHelper.close();
-//        database.close();
-//        return test;
-//
-//    }
+
+        System.out.println("вивів");
+        currencyDataBaseHelper.close();
+        database.close();
+        return test;
+
+    }
 
     public static Boolean IsTimeForUpdate(Context context){
         String dateOfLastUpdate = "";

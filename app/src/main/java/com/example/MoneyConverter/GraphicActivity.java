@@ -4,11 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import MoneyConverterData.DataBaseWorker;
 import MoneyConverterJSON.WebViewer;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -52,14 +55,13 @@ public class GraphicActivity extends AppCompatActivity {
         TV_test = findViewById(R.id.textView);
 
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                TV_test.setText(DataBaseWorker.DB_test(context));
-//            }
-//        }).start();
-//
-//        TV_test.setMovementMethod(new ScrollingMovementMethod());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                TV_test.setText(DataBaseWorker.DB_test(context));
+            }
+        }).start();
+        TV_test.setMovementMethod(new ScrollingMovementMethod());
 
     }
 

@@ -224,6 +224,11 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(MainActivity.this, "DataBase Updated", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }).start();
     }
