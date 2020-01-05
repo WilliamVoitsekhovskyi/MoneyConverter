@@ -18,6 +18,9 @@
         <item>BYN</item>
     </string-array>
     <string name="noInternet">No Internet connection!</string>
+    <string name="dataBaseNotUpdated">Rate is not updated. Please push</string>
+    <string name="dataBaseUpdated">Rate updated</string>
+    <string name="waitForRateUpdate">Please wait. Rate updating</string>
     <string name="fieldEmpty">The field is empty!</string>
     <string name="Hint_coefficient">Here will be coefficient</string>
     <string name="Hint">Your result will be here</string>

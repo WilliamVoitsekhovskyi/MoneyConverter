@@ -25,23 +25,23 @@ public class DataBaseWorker {
         String currencyChoice;
         String currencyResultChoice;
 
-//        System.out.println("создав базу");
+        System.out.println("создав базу");
 
         for(int i = 0; i < currency.length; i++ ){
             currencyChoice = currency[i];
             for(int j = 0; j < currency.length; j++){
                 if(j != i) {
                     currencyResultChoice = currency[j];
-//                    System.out.println("почав получати данні");
+                    System.out.println("почав получати данні");
                     contentValues.put(CurrencyDataBaseHelper.COL2_CURRENCY_NAME, currencyChoice + "-" + currencyResultChoice);
                     contentValues.put(CurrencyDataBaseHelper.COL3_RATE, CurrencyJSON.getCurrencyExchangeRate(currency[i],currency[j]));
                     contentValues.put(CurrencyDataBaseHelper.COL4_TIME, dateFormat.format(date));
                     database.insert(currencyDataBaseHelper.TABLE_NAME, null, contentValues);
-//                    System.out.println("вставив данні");
+                    System.out.println("вставив данні");
                 }
             }
         }
-//        System.out.println("закінчив заповнення бази");
+        System.out.println("закінчив заповнення бази");
         currencyDataBaseHelper.close();
         database.close();
     }

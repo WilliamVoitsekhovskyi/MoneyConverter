@@ -37,31 +37,6 @@ public class CurrencyJSON {
         return 0;
     }
 
-    public static String getDateOfUpdateCurrency() {
-
-        String dateStr = "date";
-
-        //it's doesn't matter which code you'll use(they all update at the same time, but eur is the first currency in the list
-        String currencyCode = "eur";
-
-        JSONObject jsonObject = null;
-        try {
-            //use usd because if you will use eur you can't parse information about eur
-            jsonObject = createJSONObject("usd");
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
-
-
-        assert jsonObject != null;
-        Map currency = ((Map) jsonObject.get(currencyCode));
-
-        for (Map.Entry pair : (Iterable<Map.Entry>) currency.entrySet()) {
-            if(pair.getKey().equals(dateStr))
-                return (String) pair.getValue();
-        }
-        return null;
-    }
 
 
 }

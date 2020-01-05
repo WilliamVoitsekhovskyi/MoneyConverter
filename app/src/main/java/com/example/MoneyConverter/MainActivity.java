@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     String amountOfMoney;
     String fieldEmpty = "Field is empty";
     String noInternet;
+    String dataBaseNotUpdated;
+    String dataBaseUpdated;
+    String waitForRateUpdate;
     String coefficientString;
     String resultValueString;
     String currencyChoice = "";
@@ -63,11 +66,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if(DataBaseWorker.IsTimeForUpdate(context)){
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(MainActivity.this, waitForRateUpdate, Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     try {
                         DataBaseWorker.setRateIntoDateBase(context);
                     } catch (IOException | ParseException e) {
                         e.printStackTrace();
                     }
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "DataBase Updated", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         }).start();
@@ -81,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void init(){
         noInternet = getString(R.string.noInternet);
+        dataBaseNotUpdated = getString(R.string.dataBaseNotUpdated);
+        dataBaseUpdated = getString(R.string.dataBaseUpdated);
+        waitForRateUpdate = getString(R.string.waitForRateUpdate);
 
         initAllEditTexts();
         initAllTextViewers();
@@ -161,6 +177,13 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, noInternet, Toast.LENGTH_SHORT).show();
                         }
                     });
+                }catch (NumberFormatException e){
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(MainActivity.this, dataBaseNotUpdated + " - " +
+                                    getString(R.string.updateRateInformation), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
                 ED_convertedValue.post(new Runnable() {
                     @Override
@@ -219,6 +242,11 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(MainActivity.this, waitForRateUpdate, Toast.LENGTH_SHORT).show();
+                    }
+                });
                 try {
                     DataBaseWorker.setRateIntoDateBase(context);
                 } catch (IOException | ParseException e) {
@@ -226,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        Toast.makeText(MainActivity.this, "DataBase Updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, dataBaseUpdated, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
