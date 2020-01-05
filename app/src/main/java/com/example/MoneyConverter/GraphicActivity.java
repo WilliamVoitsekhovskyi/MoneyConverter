@@ -1,15 +1,14 @@
 package com.example.MoneyConverter;
 
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Spinner;
-
-import MoneyConverterData.CurrencyDataBaseHelper;
+import android.widget.TextView;
 import MoneyConverterJSON.WebViewer;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -21,14 +20,14 @@ public class GraphicActivity extends AppCompatActivity {
 
     private Spinner SP_currencySelected;
     private Spinner SP_resultCurrencySelected;
-
+    public TextView TV_test;
 
 
     private ActionBar actionBar;
 
     private WebView webView;
 
-
+    Context context = this;
 
     @SuppressLint("RestrictedApi")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -50,10 +49,17 @@ public class GraphicActivity extends AppCompatActivity {
 
         webViewClient.prepareWebPage(webView);
 
-    //    init();
+        TV_test = findViewById(R.id.textView);
 
-        CurrencyDataBaseHelper currencyDataBaseHelper = new CurrencyDataBaseHelper(this, "CurrencyRateDB", 1 );   // here should be (this) not (this, "", 1 )
-        ContentValues contentValues = new ContentValues();
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                TV_test.setText(DataBaseWorker.DB_test(context));
+//            }
+//        }).start();
+//
+//        TV_test.setMovementMethod(new ScrollingMovementMethod());
 
     }
 
@@ -101,4 +107,8 @@ public class GraphicActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
 }

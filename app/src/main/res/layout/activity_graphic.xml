@@ -40,6 +40,8 @@
             android:gravity=""
             android:spinnerMode="dropdown" />
 
+
+
         <Button
             android:id="@+id/button_showGraphic"
             android:layout_width="match_parent"
@@ -52,6 +54,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:scrollbars="vertical"
+            android:text="TextView" />
+
+
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

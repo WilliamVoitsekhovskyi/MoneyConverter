@@ -1,7 +1,9 @@
 package com.example.MoneyConverter;
 
+
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -12,8 +14,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import MoneyConverterData.ResultCounter;
-import MoneyConverterJSON.CurrencyJSON;
+import MoneyConverterData.DataBaseWorker;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.simple.parser.ParseException;
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     ImageButton reverseImageButton;
 
+    final Context context = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +58,20 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if(DataBaseWorker.IsTimeForUpdate(context)){
+                    try {
+                        DataBaseWorker.setRateIntoDateBase(context);
+                    } catch (IOException | ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
     }
 
     public void setDefaultCurrencyChoice(){
@@ -72,12 +90,15 @@ public class MainActivity extends AppCompatActivity {
         resultCurrencyChoice = String.valueOf(SP_resultCurrencySelected.getSelectedItem());
 
         reverseImageButton = findViewById(R.id.reverseButton);
+
     }
 
     private void initAllEditTexts(){
         ED_enteredValue = findViewById(R.id.enteredValue);
         ED_convertedValue = findViewById(R.id.resultView);
         ED_convertedValue.setFocusable(false);
+
+
     }
 
     private void initAllTextViewers(){
@@ -109,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    coefficientString = ResultCounter.getCoefficient(currencyChoice, resultCurrencyChoice);
+                    coefficientString = DataBaseWorker.getCoefficient(currencyChoice, resultCurrencyChoice, context);
                     TV_coefficient.post(new Runnable() {
                         @Override
                         public void run() {
@@ -119,12 +140,12 @@ public class MainActivity extends AppCompatActivity {
                     TV_updateInfo.post(new Runnable() {
                         @Override
                         public void run() {
-                            TV_updateInfo.setText(CurrencyJSON.getDateOfUpdateCurrency());
+                            TV_updateInfo.setText(DataBaseWorker.getDateOfUpdateCurrency(currencyChoice, resultCurrencyChoice, context));
                         }
                     });
                     try {
 
-                        resultValueString = ResultCounter.getResult(amountOfMoney, currencyChoice, resultCurrencyChoice);
+                        resultValueString = DataBaseWorker.getResult(amountOfMoney, currencyChoice, resultCurrencyChoice, context);
                     }
                     catch (NumberFormatException e){
                         runOnUiThread(new Runnable() {
@@ -132,8 +153,6 @@ public class MainActivity extends AppCompatActivity {
                                 showError();
                             }
                         });
-                    } catch (ParseException | IOException e) {
-                        e.printStackTrace();
                     }
                 }
                 catch (NullPointerException e){
@@ -142,8 +161,6 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, noInternet, Toast.LENGTH_SHORT).show();
                         }
                     });
-                } catch (ParseException | IOException e) {
-                    e.printStackTrace();
                 }
                 ED_convertedValue.post(new Runnable() {
                     @Override
@@ -197,4 +214,21 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GraphicActivity.class);
         startActivity(intent);
     }
+
+    public void onClick_updateRateInformation (View view){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DataBaseWorker.setRateIntoDateBase(context);
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+
+
+
 }

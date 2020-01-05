@@ -7,14 +7,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class CurrencyDataBaseHelper extends SQLiteOpenHelper {
-    private static final String DB_Name = "CurrencyRateDB";
-    private static final String TABLE_NAME = "Currency_Rate_table";
-    private static final int DB_Version = 1;
-    private static final String COL1_ID = "ID";
-    private static final String COL2_CURRENCY_NAME = "CURRENCY_NAME";
-    private static final String COL3_RATE = "RATE";
-    private static final String COL4_TIME = "DATE";
-
+    public static final String DB_Name = "CurrencyRateDB";
+    public static final String TABLE_NAME = "Currency_Rate_table";
+    public static final int DB_Version = 1;
+    public static final String COL1_ID = "ID";
+    public static final String COL2_CURRENCY_NAME = "CURRENCY_NAME";
+    public static final String COL3_RATE = "RATE";
+    public static final String COL4_TIME = "DATE";
 
     public CurrencyDataBaseHelper(@Nullable Context context, @Nullable String name, int version) {
         super(context, DB_Name, null, DB_Version);
