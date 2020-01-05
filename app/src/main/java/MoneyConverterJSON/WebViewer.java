@@ -8,8 +8,7 @@ import android.webkit.WebViewClient;
 
 public class WebViewer extends WebViewClient {
     @Override
-    public void onPageFinished(WebView webView, String url)
-    {
+    public void onPageFinished(WebView webView, String url) {
         webView.loadUrl ("javascript: document.getElementByClassName ('frame fm-middle');");
     }
 
@@ -28,11 +27,13 @@ public class WebViewer extends WebViewClient {
     }
 
     public void prepareWebPage(WebView webView){
+        int coordinateX = 0;
+        int coordinateY = 1050;
         webView.getSettings().setJavaScriptEnabled(true);
 
         webView.getSettings().setBuiltInZoomControls(true);
 
-        webView.scrollTo(0,1050);
+        webView.scrollTo(coordinateX,coordinateY);
     }
 
     public static void getGraphic(WebView webView, String currencyCode, String currencyResultCode){
