@@ -12,6 +12,8 @@ import java.util.Date;
 import MoneyConverterJSON.CurrencyJSON;
 
 public class DataBaseWorker {
+    private static int scaleForBigDecimal = 2;
+
     public static void setRateIntoDateBase(Context context) throws IOException, ParseException {
         context.deleteDatabase(CurrencyDataBaseHelper.DB_Name);
         CurrencyDataBaseHelper currencyDataBaseHelper = new CurrencyDataBaseHelper(context, CurrencyDataBaseHelper.DB_Name, 1 );
@@ -119,7 +121,8 @@ public class DataBaseWorker {
         if (cursor.moveToNext()){
             coefficient = cursor.getString(cursor.getColumnIndex(CurrencyDataBaseHelper.COL3_RATE));
         }
-        return coefficient;
+        BigDecimal bigDecimal = new BigDecimal(coefficient);
+        return String.valueOf(bigDecimal.setScale(scaleForBigDecimal, BigDecimal.ROUND_HALF_UP));
     }
 
     public static String getResult(String amountOfMoney, String currencyChoice, String resultCurrencyChoice, Context context){
@@ -127,7 +130,7 @@ public class DataBaseWorker {
         BigDecimal coefficient = new BigDecimal(getCoefficient(currencyChoice, resultCurrencyChoice, context));
         BigDecimal amount = new BigDecimal(amountOfMoney);
         result = coefficient.multiply(amount);
-        return result.toString();
+        return String.valueOf(result.setScale(scaleForBigDecimal, BigDecimal.ROUND_HALF_UP));
     }
 
     public static String getDateOfUpdateCurrency(String currencyChoice, String resultCurrencyChoice, Context context){
