@@ -13,4 +13,5 @@
     <string name="Hint">Ваш результат буде тут</string>
     <string name="graphics_of_exchange_rates">Графік валютних курсів</string>
     <string name="button_show">Знайти</string>
+    <string name="updateRateInformation">Оновити курси</string>
 </resources>

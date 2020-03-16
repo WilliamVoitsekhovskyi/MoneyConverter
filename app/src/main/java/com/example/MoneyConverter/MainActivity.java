@@ -14,13 +14,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import MoneyConverterData.DataBaseWorker;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+
+import MoneyConverterData.DataBaseWorker;
 
 
 public class MainActivity extends AppCompatActivity {
